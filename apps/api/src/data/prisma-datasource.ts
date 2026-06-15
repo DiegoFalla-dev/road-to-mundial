@@ -30,7 +30,7 @@ export class PrismaDataSource implements DataSource {
       include: this.include,
       orderBy: { name: 'asc' },
     });
-    return rows.map((r) => mapTeamProfile(r as unknown as TeamRow));
+    return rows.map((r: unknown) => mapTeamProfile(r as TeamRow));
   }
 
   async getTeam(id: string): Promise<TeamProfile | null> {
