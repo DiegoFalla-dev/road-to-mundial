@@ -1,0 +1,21 @@
+# Blueprint de Render para la API (@rtm/api).
+# Despliegue de un clic: en Render → New → Blueprint → conecta el repo.
+# La API queda en https://<servicio>.onrender.com/api
+services:
+  - type: web
+    name: road-to-mundial-api
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build:core && npm --workspace @rtm/api run build
+    startCommand: npm --workspace @rtm/api run start:prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: '20'
+      # seed = datos reales embebidos (sin dependencias). Cambia a "snapshot"
+      # cuando el job de refresco (API-Football) genere el snapshot.
+      - key: DATA_SOURCE
+        value: seed
+      - key: SNAPSHOT_PATH
+        value: data/worldcup-2026.snapshot.json

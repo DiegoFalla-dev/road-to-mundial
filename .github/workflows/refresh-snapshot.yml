@@ -1,0 +1,32 @@
+name: Refrescar snapshot del Mundial 2026
+
+# Mueve la tabla y los resultados a lo largo del torneo: consulta API-Football
+# y commitea el snapshot actualizado. Programado cada 3 horas (ajustable) y
+# ejecutable manualmente.
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run build:core
+      - name: Refrescar snapshot desde API-Football
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: npm --workspace @rtm/scraper run refresh
+      - name: Commit del snapshot actualizado
+        run: |
+          git config user.name "rtm-bot"
+          git config user.email "bot@road-to-mundial.local"
+          git add apps/api/data/worldcup-2026.snapshot.json
+          git commit -m "chore(data): refrescar snapshot $(date -u +%FT%TZ)" || echo "Sin cambios"
+          git push

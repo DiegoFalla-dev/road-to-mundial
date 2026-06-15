@@ -1,0 +1,79 @@
+<h1 class="title">Comparador de selecciones</h1>
+
+<div class="selectors rtm-card">
+  <select [ngModel]="homeId()" (ngModelChange)="homeId.set($event); compare()" aria-label="Equipo local">
+    @for (t of teams(); track t.id) {
+      <option [value]="t.id">{{ t.name }}</option>
+    }
+  </select>
+  <span class="vs-pill">VS</span>
+  <select [ngModel]="awayId()" (ngModelChange)="awayId.set($event); compare()" aria-label="Equipo visitante">
+    @for (t of teams(); track t.id) {
+      <option [value]="t.id">{{ t.name }}</option>
+    }
+  </select>
+</div>
+
+@if (loading() && !result()) {
+  <div class="rtm-card pad"><div class="rtm-skeleton" style="height: 240px"></div></div>
+} @else if (result(); as r) {
+  <div class="rtm-fade-in">
+    <section class="rtm-card pad">
+      <div class="score-head">
+        <div class="side">
+          <b class="composite home">{{ r.homeRating.composite | number: "1.0-0" }}</b>
+          <span>{{ r.home.name }}</span>
+        </div>
+        <span class="rtm-badge">Puntaje del modelo</span>
+        <div class="side right">
+          <b class="composite away">{{ r.awayRating.composite | number: "1.0-0" }}</b>
+          <span>{{ r.away.name }}</span>
+        </div>
+      </div>
+
+      <rtm-probability-bar [p]="r.prediction.probabilities" [homeLabel]="r.home.name" [awayLabel]="r.away.name" />
+
+      <div class="conf rtm-muted">
+        Confianza del pronóstico: <b [class]="'conf-' + r.prediction.confidence.toLowerCase()">{{ r.prediction.confidence }}</b>
+        · Goles esperados {{ r.prediction.expectedGoals.home }} – {{ r.prediction.expectedGoals.away }}
+      </div>
+    </section>
+
+    <div class="two">
+      <section class="rtm-card pad">
+        <h2>Perfil comparado</h2>
+        <rtm-radar [labels]="radarLabels" [series]="radarSeries()" />
+        <div class="legend">
+          <span><i class="dot home"></i>{{ r.home.name }}</span>
+          <span><i class="dot away"></i>{{ r.away.name }}</span>
+        </div>
+      </section>
+
+      <section class="rtm-card pad">
+        <h2>Estadísticas clave</h2>
+        <rtm-stat-bar label="Goles anotados / partido" [home]="r.home.offensive.avgGoalsScored" [away]="r.away.offensive.avgGoalsScored" />
+        <rtm-stat-bar label="Goles recibidos / partido" [home]="r.home.defensive.avgGoalsConceded" [away]="r.away.defensive.avgGoalsConceded" [lowerIsBetter]="true" />
+        <rtm-stat-bar label="Tiros a puerta / partido" [home]="r.home.offensive.avgShotsOnTarget" [away]="r.away.offensive.avgShotsOnTarget" />
+        <rtm-stat-bar label="Porterías a cero (10)" [home]="r.home.defensive.cleanSheets" [away]="r.away.defensive.cleanSheets" [decimals]="0" />
+        <rtm-stat-bar label="Victorias (últimos 10)" [home]="r.home.form[10].wins" [away]="r.away.form[10].wins" [decimals]="0" />
+      </section>
+    </div>
+
+    <section class="rtm-card pad factors">
+      <div>
+        <h3>Factores a favor</h3>
+        <ul>
+          @for (f of r.prediction.factorsFor; track f) { <li>{{ f }}</li> }
+        </ul>
+      </div>
+      <div>
+        <h3>Riesgos del pronóstico</h3>
+        <ul>
+          @for (rk of r.prediction.risks; track rk) { <li>{{ rk }}</li> }
+        </ul>
+      </div>
+    </section>
+
+    <p class="disclaimer rtm-muted">⚠️ {{ r.prediction.disclaimer }}</p>
+  </div>
+}

@@ -1,0 +1,143 @@
+/* ===== Sistema de diseño Road to Mundial — tokens + base ===== */
+
+:root {
+  --rtm-font: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Marca */
+  --rtm-primary: #16a34a;
+  --rtm-primary-600: #15803d;
+  --rtm-accent: #22d3ee;
+  --rtm-danger: #ef4444;
+  --rtm-warn: #f59e0b;
+}
+
+/* Tema oscuro (por defecto) */
+:root,
+:root[data-theme='dark'] {
+  --rtm-bg: #0b0f14;
+  --rtm-surface: #131a22;
+  --rtm-surface-2: #1b2430;
+  --rtm-border: #243040;
+  --rtm-text: #e8eef5;
+  --rtm-text-muted: #93a1b2;
+  --rtm-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Tema claro */
+:root[data-theme='light'] {
+  --rtm-bg: #f4f6f9;
+  --rtm-surface: #ffffff;
+  --rtm-surface-2: #eef2f7;
+  --rtm-border: #dde3ea;
+  --rtm-text: #0f1722;
+  --rtm-text-muted: #5b6776;
+  --rtm-shadow: 0 6px 24px rgba(15, 23, 34, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--rtm-font);
+  background: var(--rtm-bg);
+  color: var(--rtm-text);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rtm-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.rtm-card {
+  background: var(--rtm-surface);
+  border: 1px solid var(--rtm-border);
+  border-radius: 16px;
+  box-shadow: var(--rtm-shadow);
+}
+
+.rtm-muted {
+  color: var(--rtm-text-muted);
+}
+
+.rtm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--rtm-surface-2);
+  border: 1px solid var(--rtm-border);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+button.rtm-btn {
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid var(--rtm-border);
+  background: var(--rtm-surface-2);
+  color: var(--rtm-text);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: transform 0.12s ease, background 0.2s ease;
+}
+button.rtm-btn:hover {
+  transform: translateY(-1px);
+}
+button.rtm-btn--primary {
+  background: var(--rtm-primary);
+  border-color: var(--rtm-primary-600);
+  color: #fff;
+}
+
+/* Skeleton loader */
+.rtm-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--rtm-surface-2) 25%,
+    var(--rtm-border) 37%,
+    var(--rtm-surface-2) 63%
+  );
+  background-size: 400% 100%;
+  animation: rtm-shimmer 1.3s ease infinite;
+  border-radius: 10px;
+}
+@keyframes rtm-shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes rtm-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rtm-fade-in {
+  animation: rtm-fade-in 0.35s ease both;
+}

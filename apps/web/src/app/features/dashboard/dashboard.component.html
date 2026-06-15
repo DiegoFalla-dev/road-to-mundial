@@ -1,0 +1,67 @@
+<section class="hero rtm-card rtm-fade-in">
+  <div class="hero-text">
+    <span class="rtm-badge">Mundial 2026 · USA · México · Canadá</span>
+    <h1>Análisis y probabilidades de cada selección</h1>
+    <p class="rtm-muted">
+      Compara equipos, evalúa su forma reciente y consulta probabilidades estimadas con un modelo
+      ponderado basado en datos.
+    </p>
+    <a routerLink="/comparador" class="rtm-btn rtm-btn--primary">Abrir comparador</a>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Próximos partidos</h2>
+  @if (loading()) {
+    <div class="grid">
+      @for (s of skeletons; track $index) {
+        <div class="rtm-card match-card"><div class="rtm-skeleton" style="height: 96px"></div></div>
+      }
+    </div>
+  } @else {
+    <div class="grid">
+      @for (m of upcoming(); track m.id) {
+        <a class="rtm-card match-card rtm-fade-in" [routerLink]="['/partido', m.id]">
+          <div class="meta rtm-muted">
+            <span class="rtm-badge">Grupo {{ m.groupName }}</span>
+            <span>{{ m.kickoff | date: "d MMM · HH:mm" }}</span>
+          </div>
+          <div class="teams">
+            <span class="team"><b class="code">{{ m.homeTeamCode }}</b> {{ m.homeTeamName }}</span>
+            <span class="vs">vs</span>
+            <span class="team right">{{ m.awayTeamName }} <b class="code">{{ m.awayTeamCode }}</b></span>
+          </div>
+          <div class="venue rtm-muted">{{ m.venue }}</div>
+        </a>
+      }
+    </div>
+  }
+</section>
+
+<div class="two-col">
+  <section class="block">
+    <h2>Selecciones destacadas</h2>
+    <div class="featured">
+      @for (t of featured(); track t.id) {
+        <a class="rtm-card team-chip rtm-fade-in" [routerLink]="['/seleccion', t.id]">
+          <b class="code">{{ t.code }}</b>
+          <span class="name">{{ t.name }}</span>
+          <span class="rating">{{ t.historicalRating }}</span>
+        </a>
+      }
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Últimos resultados</h2>
+    <div class="results">
+      @for (m of finished(); track m.id) {
+        <a class="rtm-card result-row rtm-fade-in" [routerLink]="['/partido', m.id]">
+          <span class="t">{{ m.homeTeamCode }}</span>
+          <span class="score">{{ m.homeScore }} - {{ m.awayScore }}</span>
+          <span class="t right">{{ m.awayTeamCode }}</span>
+        </a>
+      }
+    </div>
+  </section>
+</div>

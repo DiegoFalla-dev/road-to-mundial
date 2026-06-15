@@ -1,0 +1,162 @@
+// Esquema de persistencia — PostgreSQL vía Prisma.
+// Modela selecciones, estadísticas, partidos del Mundial 2026, enfrentamientos
+// directos y análisis generados. Diseñado para alimentar la implementación
+// PrismaDataSource (sustituible por SeedDataSource en desarrollo).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Selección nacional participante.
+model Team {
+  id            String   @id @default(cuid())
+  slug          String   @unique // ej. "argentina"
+  name          String
+  code          String   @unique // ISO-3, ej. "ARG"
+  confederation String
+  crestUrl      String?
+  formation     String? // sistema táctico habitual, ej. "4-3-3"
+
+  // Ratings intrínsecos (0-100)
+  historicalRating    Int
+  tacticalRating      Int
+  avgOpponentStrength Int
+
+  offensive  OffensiveStat?
+  defensive  DefensiveStat?
+  squad      SquadStatus?
+  formRecords FormRecord[]
+
+  homeMatches Match[]      @relation("HomeTeam")
+  awayMatches Match[]      @relation("AwayTeam")
+  h2hAsTeam   HeadToHead[] @relation("H2HTeam")
+  h2hAsRival  HeadToHead[] @relation("H2HOpponent")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([confederation])
+}
+
+/// Registro agregado de forma reciente por ventana (5/10/15).
+model FormRecord {
+  id           String @id @default(cuid())
+  team         Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId       String
+  window       Int // 5 | 10 | 15
+  played       Int
+  wins         Int
+  draws        Int
+  losses       Int
+  goalsFor     Int
+  goalsAgainst Int
+  sequence     String // CSV de 'W','D','L' en orden cronológico
+
+  @@unique([teamId, window])
+}
+
+model OffensiveStat {
+  id              String @id @default(cuid())
+  team            Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId          String @unique
+  avgGoalsScored  Float
+  avgShots        Float
+  avgShotsOnTarget Float
+  conversionRate  Float
+}
+
+model DefensiveStat {
+  id                String @id @default(cuid())
+  team              Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId            String @unique
+  avgGoalsConceded  Float
+  cleanSheets       Int
+  avgShotsConceded  Float
+}
+
+model SquadStatus {
+  id                 String @id @default(cuid())
+  team               Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId             String @unique
+  totalKeyPlayers    Int
+  keyPlayersAvailable Int
+  injured            Int
+  suspended          Int
+}
+
+/// Historial de enfrentamientos directos (dirigido: team vs opponent).
+model HeadToHead {
+  id           String @id @default(cuid())
+  team         Team   @relation("H2HTeam", fields: [teamId], references: [id], onDelete: Cascade)
+  teamId       String
+  opponent     Team   @relation("H2HOpponent", fields: [opponentId], references: [id], onDelete: Cascade)
+  opponentId   String
+  matches      Int
+  wins         Int
+  draws        Int
+  losses       Int
+  goalsFor     Int
+  goalsAgainst Int
+
+  @@unique([teamId, opponentId])
+}
+
+enum MatchStage {
+  GROUP
+  ROUND_32
+  ROUND_16
+  QUARTER
+  SEMI
+  THIRD_PLACE
+  FINAL
+}
+
+enum MatchStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+}
+
+/// Partido del Mundial 2026.
+model Match {
+  id         String      @id @default(cuid())
+  homeTeam   Team        @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  homeTeamId String
+  awayTeam   Team        @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  awayTeamId String
+  groupName  String? // ej. "A"
+  stage      MatchStage  @default(GROUP)
+  status     MatchStatus @default(SCHEDULED)
+  kickoff    DateTime?
+  venue      String?
+  homeScore  Int?
+  awayScore  Int?
+
+  analyses Analysis[]
+
+  @@index([kickoff])
+  @@index([status])
+}
+
+/// Análisis/predicción generado y persistido para un partido.
+model Analysis {
+  id            String   @id @default(cuid())
+  match         Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  matchId       String
+  homeWinProb   Int
+  drawProb      Int
+  awayWinProb   Int
+  confidence    String
+  expectedHome  Float
+  expectedAway  Float
+  payload       Json // MatchPrediction completo serializado
+  modelVersion  String
+  createdAt     DateTime @default(now())
+
+  @@index([matchId])
+}
