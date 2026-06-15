@@ -11,8 +11,8 @@
     "test": "node --test --import tsx ./test/*.test.ts",
     "lint": "eslint src"
   },
-  "dependencies": {
-    "rxjs": "7.8.2"
+  "peerDependencies": {
+    "rxjs": ">=7.8.0"
   },
   "devDependencies": {
     "tsx": "^4.19.2",

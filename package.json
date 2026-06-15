@@ -14,7 +14,8 @@
     "dev:api": "npm run start:dev -w @rtm/api",
     "dev:web": "npm run start -w @rtm/web",
     "test:scraper": "npm run test -w @rtm/scraper",
-    "refresh:data": "npm run refresh -w @rtm/scraper"
+    "refresh:data": "npm run refresh -w @rtm/scraper",
+    "postinstall": "node -e \"const fs = require('fs'); const path = require('path'); const dir = path.join(__dirname, 'apps/web/node_modules/rxjs'); if(fs.existsSync(dir)) { fs.rmSync(dir, {recursive: true, force: true}); }\""
   },
   "engines": {
     "node": ">=20"
