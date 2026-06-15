@@ -16,8 +16,9 @@
 
 @if (loading() && !result()) {
   <div class="rtm-card pad"><div class="rtm-skeleton" style="height: 240px"></div></div>
-} @else if (result(); as r) {
-  <div class="rtm-fade-in">
+} @else {
+  @if (result(); as r) {
+    <div class="rtm-fade-in">
     <section class="rtm-card pad">
       <div class="score-head">
         <div class="side">
@@ -75,5 +76,6 @@
     </section>
 
     <p class="disclaimer rtm-muted">⚠️ {{ r.prediction.disclaimer }}</p>
-  </div>
+    </div>
+  }
 }

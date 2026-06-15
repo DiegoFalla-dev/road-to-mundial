@@ -5,12 +5,13 @@
  */
 import type {
   MatchPrediction,
+  MatchResult,
   ScoreBreakdown,
   TeamProfile,
   TeamRating,
 } from '@rtm/core';
 
-export type { MatchPrediction, ScoreBreakdown, TeamProfile, TeamRating };
+export type { MatchPrediction, MatchResult, ScoreBreakdown, TeamProfile, TeamRating };
 
 export interface TeamProfileView extends TeamProfile {
   formation: string | null;
