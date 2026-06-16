@@ -1,12 +1,1308 @@
 {
   "provenance": {
-    "source": "API-Football (api-sports.io) — FIFA World Cup 2026 (league 1)",
-    "url": "https://v3.football.api-sports.io",
-    "retrievedAt": "2026-06-15T20:46:00.555Z",
-    "note": "Clasificación y partidos en tiempo (casi) real. Refrescable por job programado."
+    "source": "Flashscore.pe — Campeonato del Mundo 2026 (Clasificación)",
+    "url": "https://www.flashscore.pe/futbol/mundial/campeonato-del-mundo/clasificacion/",
+    "retrievedAt": "2026-06-14T00:00:00.000Z",
+    "note": "Snapshot inicial real (J1). El job de API-Football lo reemplaza cuando hay datos."
   },
-  "groups": {},
-  "teams": [],
-  "standings": [],
-  "matches": []
+  "groups": {
+    "A": [
+      "mex",
+      "kor",
+      "cze",
+      "rsa"
+    ],
+    "B": [
+      "sui",
+      "can",
+      "qat",
+      "bih"
+    ],
+    "C": [
+      "sco",
+      "mar",
+      "bra",
+      "hai"
+    ],
+    "D": [
+      "usa",
+      "aus",
+      "tur",
+      "par"
+    ],
+    "E": [
+      "ger",
+      "civ",
+      "ecu",
+      "cuw"
+    ],
+    "F": [
+      "swe",
+      "jpn",
+      "ned",
+      "tun"
+    ],
+    "G": [
+      "bel",
+      "egy",
+      "irn",
+      "nzl"
+    ],
+    "H": [
+      "esp",
+      "uru",
+      "cpv",
+      "ksa"
+    ],
+    "I": [
+      "fra",
+      "nor",
+      "sen",
+      "irq"
+    ],
+    "J": [
+      "aut",
+      "arg",
+      "alg",
+      "jor"
+    ],
+    "K": [
+      "por",
+      "col",
+      "cod",
+      "uzb"
+    ],
+    "L": [
+      "cro",
+      "eng",
+      "gha",
+      "pan"
+    ]
+  },
+  "teams": [
+    {
+      "id": "mex",
+      "name": "México",
+      "code": "MEX",
+      "confederation": "CONCACAF",
+      "strengthRating": 75
+    },
+    {
+      "id": "kor",
+      "name": "Corea del Sur",
+      "code": "KOR",
+      "confederation": "AFC",
+      "strengthRating": 74
+    },
+    {
+      "id": "cze",
+      "name": "República Checa",
+      "code": "CZE",
+      "confederation": "UEFA",
+      "strengthRating": 70
+    },
+    {
+      "id": "rsa",
+      "name": "Sudáfrica",
+      "code": "RSA",
+      "confederation": "CAF",
+      "strengthRating": 66
+    },
+    {
+      "id": "sui",
+      "name": "Suiza",
+      "code": "SUI",
+      "confederation": "UEFA",
+      "strengthRating": 79
+    },
+    {
+      "id": "can",
+      "name": "Canadá",
+      "code": "CAN",
+      "confederation": "CONCACAF",
+      "strengthRating": 70
+    },
+    {
+      "id": "qat",
+      "name": "Catar",
+      "code": "QAT",
+      "confederation": "AFC",
+      "strengthRating": 66
+    },
+    {
+      "id": "bih",
+      "name": "Bosnia-Herzegovina",
+      "code": "BIH",
+      "confederation": "UEFA",
+      "strengthRating": 68
+    },
+    {
+      "id": "sco",
+      "name": "Escocia",
+      "code": "SCO",
+      "confederation": "UEFA",
+      "strengthRating": 71
+    },
+    {
+      "id": "mar",
+      "name": "Marruecos",
+      "code": "MAR",
+      "confederation": "CAF",
+      "strengthRating": 80
+    },
+    {
+      "id": "bra",
+      "name": "Brasil",
+      "code": "BRA",
+      "confederation": "CONMEBOL",
+      "strengthRating": 90
+    },
+    {
+      "id": "hai",
+      "name": "Haití",
+      "code": "HAI",
+      "confederation": "CONCACAF",
+      "strengthRating": 55
+    },
+    {
+      "id": "usa",
+      "name": "EE. UU.",
+      "code": "USA",
+      "confederation": "CONCACAF",
+      "strengthRating": 76
+    },
+    {
+      "id": "aus",
+      "name": "Australia",
+      "code": "AUS",
+      "confederation": "AFC",
+      "strengthRating": 70
+    },
+    {
+      "id": "tur",
+      "name": "Turquía",
+      "code": "TUR",
+      "confederation": "UEFA",
+      "strengthRating": 76
+    },
+    {
+      "id": "par",
+      "name": "Paraguay",
+      "code": "PAR",
+      "confederation": "CONMEBOL",
+      "strengthRating": 68
+    },
+    {
+      "id": "ger",
+      "name": "Alemania",
+      "code": "GER",
+      "confederation": "UEFA",
+      "strengthRating": 85
+    },
+    {
+      "id": "civ",
+      "name": "Costa de Marfil",
+      "code": "CIV",
+      "confederation": "CAF",
+      "strengthRating": 73
+    },
+    {
+      "id": "ecu",
+      "name": "Ecuador",
+      "code": "ECU",
+      "confederation": "CONMEBOL",
+      "strengthRating": 72
+    },
+    {
+      "id": "cuw",
+      "name": "Curazao",
+      "code": "CUW",
+      "confederation": "CONCACAF",
+      "strengthRating": 52
+    },
+    {
+      "id": "swe",
+      "name": "Suecia",
+      "code": "SWE",
+      "confederation": "UEFA",
+      "strengthRating": 74
+    },
+    {
+      "id": "jpn",
+      "name": "Japón",
+      "code": "JPN",
+      "confederation": "AFC",
+      "strengthRating": 78
+    },
+    {
+      "id": "ned",
+      "name": "Países Bajos",
+      "code": "NED",
+      "confederation": "UEFA",
+      "strengthRating": 86
+    },
+    {
+      "id": "tun",
+      "name": "Túnez",
+      "code": "TUN",
+      "confederation": "CAF",
+      "strengthRating": 69
+    },
+    {
+      "id": "bel",
+      "name": "Bélgica",
+      "code": "BEL",
+      "confederation": "UEFA",
+      "strengthRating": 84
+    },
+    {
+      "id": "egy",
+      "name": "Egipto",
+      "code": "EGY",
+      "confederation": "CAF",
+      "strengthRating": 71
+    },
+    {
+      "id": "irn",
+      "name": "Irán",
+      "code": "IRN",
+      "confederation": "AFC",
+      "strengthRating": 73
+    },
+    {
+      "id": "nzl",
+      "name": "Nueva Zelanda",
+      "code": "NZL",
+      "confederation": "OFC",
+      "strengthRating": 60
+    },
+    {
+      "id": "esp",
+      "name": "España",
+      "code": "ESP",
+      "confederation": "UEFA",
+      "strengthRating": 92
+    },
+    {
+      "id": "uru",
+      "name": "Uruguay",
+      "code": "URU",
+      "confederation": "CONMEBOL",
+      "strengthRating": 82
+    },
+    {
+      "id": "cpv",
+      "name": "Cabo Verde",
+      "code": "CPV",
+      "confederation": "CAF",
+      "strengthRating": 60
+    },
+    {
+      "id": "ksa",
+      "name": "Arabia Saudí",
+      "code": "KSA",
+      "confederation": "AFC",
+      "strengthRating": 64
+    },
+    {
+      "id": "fra",
+      "name": "Francia",
+      "code": "FRA",
+      "confederation": "UEFA",
+      "strengthRating": 92
+    },
+    {
+      "id": "nor",
+      "name": "Noruega",
+      "code": "NOR",
+      "confederation": "UEFA",
+      "strengthRating": 78
+    },
+    {
+      "id": "sen",
+      "name": "Senegal",
+      "code": "SEN",
+      "confederation": "CAF",
+      "strengthRating": 77
+    },
+    {
+      "id": "irq",
+      "name": "Irak",
+      "code": "IRQ",
+      "confederation": "AFC",
+      "strengthRating": 63
+    },
+    {
+      "id": "aut",
+      "name": "Austria",
+      "code": "AUT",
+      "confederation": "UEFA",
+      "strengthRating": 74
+    },
+    {
+      "id": "arg",
+      "name": "Argentina",
+      "code": "ARG",
+      "confederation": "CONMEBOL",
+      "strengthRating": 93
+    },
+    {
+      "id": "alg",
+      "name": "Argelia",
+      "code": "ALG",
+      "confederation": "CAF",
+      "strengthRating": 72
+    },
+    {
+      "id": "jor",
+      "name": "Jordania",
+      "code": "JOR",
+      "confederation": "AFC",
+      "strengthRating": 62
+    },
+    {
+      "id": "por",
+      "name": "Portugal",
+      "code": "POR",
+      "confederation": "UEFA",
+      "strengthRating": 88
+    },
+    {
+      "id": "col",
+      "name": "Colombia",
+      "code": "COL",
+      "confederation": "CONMEBOL",
+      "strengthRating": 81
+    },
+    {
+      "id": "cod",
+      "name": "RD Congo",
+      "code": "COD",
+      "confederation": "CAF",
+      "strengthRating": 66
+    },
+    {
+      "id": "uzb",
+      "name": "Uzbekistán",
+      "code": "UZB",
+      "confederation": "AFC",
+      "strengthRating": 64
+    },
+    {
+      "id": "cro",
+      "name": "Croacia",
+      "code": "CRO",
+      "confederation": "UEFA",
+      "strengthRating": 82
+    },
+    {
+      "id": "eng",
+      "name": "Inglaterra",
+      "code": "ENG",
+      "confederation": "UEFA",
+      "strengthRating": 89
+    },
+    {
+      "id": "gha",
+      "name": "Ghana",
+      "code": "GHA",
+      "confederation": "CAF",
+      "strengthRating": 68
+    },
+    {
+      "id": "pan",
+      "name": "Panamá",
+      "code": "PAN",
+      "confederation": "CONCACAF",
+      "strengthRating": 64
+    }
+  ],
+  "standings": [
+    {
+      "teamId": "mex",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 0,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "kor",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 1,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "cze",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 2,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
+      "teamId": "rsa",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 0,
+      "goalsAgainst": 2,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
+      "teamId": "sui",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "can",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "qat",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "bih",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "sco",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 0,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "mar",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "bra",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "hai",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 0,
+      "goalsAgainst": 1,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
+      "teamId": "usa",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 4,
+      "goalsAgainst": 1,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "aus",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 0,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "tur",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 0,
+      "goalsAgainst": 2,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
+      "teamId": "par",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 4,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
+      "teamId": "ger",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 7,
+      "goalsAgainst": 1,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "civ",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 0,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "ecu",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 0,
+      "goalsAgainst": 1,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
+      "teamId": "cuw",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
+      "teamId": "swe",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 5,
+      "goalsAgainst": 1,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
+      "teamId": "jpn",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "ned",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
+      "sequence": [
+        "D"
+      ]
+    },
+    {
+      "teamId": "tun",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 5,
+      "sequence": [
+        "L"
+      ]
+    }
+  ],
+  "matches": [
+    {
+      "id": "m01",
+      "homeTeamId": "mex",
+      "awayTeamId": "kor",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m02",
+      "homeTeamId": "mex",
+      "awayTeamId": "cze",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m03",
+      "homeTeamId": "mex",
+      "awayTeamId": "rsa",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 2,
+      "awayScore": 0
+    },
+    {
+      "id": "m04",
+      "homeTeamId": "kor",
+      "awayTeamId": "cze",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 2,
+      "awayScore": 1
+    },
+    {
+      "id": "m05",
+      "homeTeamId": "kor",
+      "awayTeamId": "rsa",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m06",
+      "homeTeamId": "cze",
+      "awayTeamId": "rsa",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m07",
+      "homeTeamId": "sui",
+      "awayTeamId": "can",
+      "group": "B",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m08",
+      "homeTeamId": "sui",
+      "awayTeamId": "qat",
+      "group": "B",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m09",
+      "homeTeamId": "sui",
+      "awayTeamId": "bih",
+      "group": "B",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m10",
+      "homeTeamId": "can",
+      "awayTeamId": "qat",
+      "group": "B",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m11",
+      "homeTeamId": "can",
+      "awayTeamId": "bih",
+      "group": "B",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m12",
+      "homeTeamId": "qat",
+      "awayTeamId": "bih",
+      "group": "B",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m13",
+      "homeTeamId": "sco",
+      "awayTeamId": "mar",
+      "group": "C",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m14",
+      "homeTeamId": "sco",
+      "awayTeamId": "bra",
+      "group": "C",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m15",
+      "homeTeamId": "sco",
+      "awayTeamId": "hai",
+      "group": "C",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 1,
+      "awayScore": 0
+    },
+    {
+      "id": "m16",
+      "homeTeamId": "mar",
+      "awayTeamId": "bra",
+      "group": "C",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 1,
+      "awayScore": 1
+    },
+    {
+      "id": "m17",
+      "homeTeamId": "mar",
+      "awayTeamId": "hai",
+      "group": "C",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m18",
+      "homeTeamId": "bra",
+      "awayTeamId": "hai",
+      "group": "C",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m19",
+      "homeTeamId": "usa",
+      "awayTeamId": "aus",
+      "group": "D",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m20",
+      "homeTeamId": "usa",
+      "awayTeamId": "tur",
+      "group": "D",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m21",
+      "homeTeamId": "usa",
+      "awayTeamId": "par",
+      "group": "D",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 4,
+      "awayScore": 1
+    },
+    {
+      "id": "m22",
+      "homeTeamId": "aus",
+      "awayTeamId": "tur",
+      "group": "D",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 2,
+      "awayScore": 0
+    },
+    {
+      "id": "m23",
+      "homeTeamId": "aus",
+      "awayTeamId": "par",
+      "group": "D",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m24",
+      "homeTeamId": "tur",
+      "awayTeamId": "par",
+      "group": "D",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m25",
+      "homeTeamId": "ger",
+      "awayTeamId": "civ",
+      "group": "E",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m26",
+      "homeTeamId": "ger",
+      "awayTeamId": "ecu",
+      "group": "E",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m27",
+      "homeTeamId": "ger",
+      "awayTeamId": "cuw",
+      "group": "E",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 7,
+      "awayScore": 1
+    },
+    {
+      "id": "m28",
+      "homeTeamId": "civ",
+      "awayTeamId": "ecu",
+      "group": "E",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 1,
+      "awayScore": 0
+    },
+    {
+      "id": "m29",
+      "homeTeamId": "civ",
+      "awayTeamId": "cuw",
+      "group": "E",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m30",
+      "homeTeamId": "ecu",
+      "awayTeamId": "cuw",
+      "group": "E",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m31",
+      "homeTeamId": "swe",
+      "awayTeamId": "jpn",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m32",
+      "homeTeamId": "swe",
+      "awayTeamId": "ned",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m33",
+      "homeTeamId": "swe",
+      "awayTeamId": "tun",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 5,
+      "awayScore": 1
+    },
+    {
+      "id": "m34",
+      "homeTeamId": "ned",
+      "awayTeamId": "jpn",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "FINISHED",
+      "homeScore": 2,
+      "awayScore": 2
+    },
+    {
+      "id": "m35",
+      "homeTeamId": "jpn",
+      "awayTeamId": "tun",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m36",
+      "homeTeamId": "ned",
+      "awayTeamId": "tun",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m37",
+      "homeTeamId": "bel",
+      "awayTeamId": "egy",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m38",
+      "homeTeamId": "bel",
+      "awayTeamId": "irn",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m39",
+      "homeTeamId": "bel",
+      "awayTeamId": "nzl",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m40",
+      "homeTeamId": "egy",
+      "awayTeamId": "irn",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m41",
+      "homeTeamId": "egy",
+      "awayTeamId": "nzl",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m42",
+      "homeTeamId": "irn",
+      "awayTeamId": "nzl",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m43",
+      "homeTeamId": "esp",
+      "awayTeamId": "uru",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m44",
+      "homeTeamId": "esp",
+      "awayTeamId": "cpv",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m45",
+      "homeTeamId": "esp",
+      "awayTeamId": "ksa",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m46",
+      "homeTeamId": "uru",
+      "awayTeamId": "cpv",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m47",
+      "homeTeamId": "uru",
+      "awayTeamId": "ksa",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m48",
+      "homeTeamId": "cpv",
+      "awayTeamId": "ksa",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m49",
+      "homeTeamId": "fra",
+      "awayTeamId": "nor",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m50",
+      "homeTeamId": "fra",
+      "awayTeamId": "sen",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m51",
+      "homeTeamId": "fra",
+      "awayTeamId": "irq",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m52",
+      "homeTeamId": "nor",
+      "awayTeamId": "sen",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m53",
+      "homeTeamId": "nor",
+      "awayTeamId": "irq",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m54",
+      "homeTeamId": "sen",
+      "awayTeamId": "irq",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m55",
+      "homeTeamId": "aut",
+      "awayTeamId": "arg",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m56",
+      "homeTeamId": "aut",
+      "awayTeamId": "alg",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m57",
+      "homeTeamId": "aut",
+      "awayTeamId": "jor",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m58",
+      "homeTeamId": "arg",
+      "awayTeamId": "alg",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m59",
+      "homeTeamId": "arg",
+      "awayTeamId": "jor",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m60",
+      "homeTeamId": "alg",
+      "awayTeamId": "jor",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m61",
+      "homeTeamId": "por",
+      "awayTeamId": "col",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m62",
+      "homeTeamId": "por",
+      "awayTeamId": "cod",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m63",
+      "homeTeamId": "por",
+      "awayTeamId": "uzb",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m64",
+      "homeTeamId": "col",
+      "awayTeamId": "cod",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m65",
+      "homeTeamId": "col",
+      "awayTeamId": "uzb",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m66",
+      "homeTeamId": "cod",
+      "awayTeamId": "uzb",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m67",
+      "homeTeamId": "cro",
+      "awayTeamId": "eng",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m68",
+      "homeTeamId": "cro",
+      "awayTeamId": "gha",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m69",
+      "homeTeamId": "cro",
+      "awayTeamId": "pan",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m70",
+      "homeTeamId": "eng",
+      "awayTeamId": "gha",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m71",
+      "homeTeamId": "eng",
+      "awayTeamId": "pan",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "m72",
+      "homeTeamId": "gha",
+      "awayTeamId": "pan",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED"
+    }
+  ]
 }

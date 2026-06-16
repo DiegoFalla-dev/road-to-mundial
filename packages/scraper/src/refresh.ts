@@ -20,6 +20,14 @@ export async function refresh(outPath: string = DEFAULT_OUT): Promise<void> {
   const client = new ApiFootballClient();
   const [standings, fixtures] = await Promise.all([client.standings(2026), client.fixtures(2026)]);
   const snapshot = buildSnapshotFromApiFootball(standings, fixtures);
+  // Guard: nunca sobrescribir con un snapshot vacío (p. ej. si el API aún no
+  // tiene datos del torneo). Así no se pierde el dataset real ya presente.
+  if (snapshot.teams.length === 0) {
+    throw new Error(
+      'API-Football devolvió 0 selecciones para el Mundial 2026; no se sobrescribe el snapshot. ' +
+        'Verifica league=1, season y la cobertura del plan.',
+    );
+  }
   writeFileSync(outPath, JSON.stringify(snapshot, null, 2));
   const finished = snapshot.matches.filter((m) => m.status === 'FINISHED').length;
   console.log(

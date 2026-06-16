@@ -1,10 +1,10 @@
-import { SEED_MATCHES, predictMatch } from '@rtm/core';
-import { ds, decorateMatch, send } from '../_lib';
+import { predictMatch } from '@rtm/core';
+import { allMatches, ds, decorateMatch, send } from '../_lib';
 
 /** GET /api/matches/:id — vista de partido con predicción. */
 export default async function handler(req: any, res: any): Promise<void> {
   const id = String(req.query.id);
-  const m = SEED_MATCHES.find((x) => x.id === id);
+  const m = (await allMatches()).find((x) => x.id === id);
   if (!m) return send(res, { message: `Partido no encontrado: ${id}` }, 404);
   const [home, away] = await Promise.all([ds.getTeam(m.homeTeamId), ds.getTeam(m.awayTeamId)]);
   const [h2hH, h2hA] = await Promise.all([
