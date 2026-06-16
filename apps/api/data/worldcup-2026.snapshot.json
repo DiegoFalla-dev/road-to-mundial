@@ -2,7 +2,7 @@
   "provenance": {
     "source": "API-Football (api-sports.io) — FIFA World Cup 2026 (league 1)",
     "url": "https://v3.football.api-sports.io",
-    "retrievedAt": "2026-06-16T00:32:40.568Z",
+    "retrievedAt": "2026-06-16T04:29:43.774Z",
     "note": "Clasificación y partidos en tiempo (casi) real. Refrescable por job programado."
   },
   "groups": {},
