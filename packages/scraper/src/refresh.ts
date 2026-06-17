@@ -1,32 +1,21 @@
 /**
- * Job de refresco: consulta API-Football y escribe el snapshot JSON que consume
- * la aplicación (SnapshotDataSource). Pensado para ejecutarse periódicamente
- * (cron, Vercel Cron, GitHub Actions) durante el torneo para mover la tabla y
- * reflejar el avance del Mundial.
+ * Job de refresco: descarga openfootball/worldcup.json (gratis, sin API key) y
+ * escribe el snapshot que consume la app. Pensado para cron (GitHub Actions).
+ * openfootball es dominio público y se actualiza con los marcadores del torneo.
  *
- * Uso:  API_FOOTBALL_KEY=xxx npx tsx src/refresh.ts [rutaSalida]
+ * Uso:  npx tsx src/refresh.ts [rutaSalida]
  */
 import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { ApiFootballClient } from './apifootball/client';
-import { buildSnapshotFromApiFootball } from './apifootball/map';
+import { buildSnapshotFromOpenfootball, fetchOpenfootball } from './openfootball';
 
-const DEFAULT_OUT = resolve(
-  __dirname,
-  '../../../apps/api/data/worldcup-2026.snapshot.json',
-);
+const DEFAULT_OUT = resolve(__dirname, '../../../apps/api/data/worldcup-2026.snapshot.json');
 
 export async function refresh(outPath: string = DEFAULT_OUT): Promise<void> {
-  const client = new ApiFootballClient();
-  const [standings, fixtures] = await Promise.all([client.standings(2026), client.fixtures(2026)]);
-  const snapshot = buildSnapshotFromApiFootball(standings, fixtures);
-  // Guard: nunca sobrescribir con un snapshot vacío (p. ej. si el API aún no
-  // tiene datos del torneo). Así no se pierde el dataset real ya presente.
+  const data = await fetchOpenfootball();
+  const snapshot = buildSnapshotFromOpenfootball(data);
   if (snapshot.teams.length === 0) {
-    throw new Error(
-      'API-Football devolvió 0 selecciones para el Mundial 2026; no se sobrescribe el snapshot. ' +
-        'Verifica league=1, season y la cobertura del plan.',
-    );
+    throw new Error('Snapshot vacío; no se sobrescribe el existente.');
   }
   writeFileSync(outPath, JSON.stringify(snapshot, null, 2));
   const finished = snapshot.matches.filter((m) => m.status === 'FINISHED').length;
