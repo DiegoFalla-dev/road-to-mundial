@@ -1,45 +1,44 @@
 {
   "provenance": {
-    "source": "Flashscore.pe — Campeonato del Mundo 2026 (Clasificación)",
-    "url": "https://www.flashscore.pe/futbol/mundial/campeonato-del-mundo/clasificacion/",
-    "retrievedAt": "2026-06-14T00:00:00.000Z",
-    "note": "Snapshot inicial real (J1). El job de API-Football lo reemplaza cuando hay datos."
+    "source": "openfootball/worldcup.json (dominio público) — FIFA World Cup 2026",
+    "url": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+    "retrievedAt": "2026-06-17T22:53:55.047Z",
+    "note": "Calendario real + marcadores de openfootball (con bootstrap de resultados J1)."
   },
   "groups": {
     "A": [
       "mex",
+      "rsa",
       "kor",
-      "cze",
-      "rsa"
+      "cze"
     ],
     "B": [
-      "sui",
-      "can",
       "qat",
-      "bih"
+      "sui",
+      "can"
     ],
     "C": [
-      "sco",
-      "mar",
       "bra",
-      "hai"
+      "mar",
+      "hai",
+      "sco"
     ],
     "D": [
       "usa",
+      "par",
       "aus",
-      "tur",
-      "par"
+      "tur"
     ],
     "E": [
       "ger",
+      "cuw",
       "civ",
-      "ecu",
-      "cuw"
+      "ecu"
     ],
     "F": [
-      "swe",
-      "jpn",
       "ned",
+      "jpn",
+      "swe",
       "tun"
     ],
     "G": [
@@ -50,31 +49,31 @@
     ],
     "H": [
       "esp",
-      "uru",
       "cpv",
-      "ksa"
+      "ksa",
+      "uru"
     ],
     "I": [
       "fra",
-      "nor",
       "sen",
-      "irq"
+      "irq",
+      "nor"
     ],
     "J": [
-      "aut",
       "arg",
       "alg",
+      "aut",
       "jor"
     ],
     "K": [
       "por",
-      "col",
       "cod",
-      "uzb"
+      "uzb",
+      "col"
     ],
     "L": [
-      "cro",
       "eng",
+      "cro",
       "gha",
       "pan"
     ]
@@ -86,6 +85,13 @@
       "code": "MEX",
       "confederation": "CONCACAF",
       "strengthRating": 75
+    },
+    {
+      "id": "rsa",
+      "name": "Sudáfrica",
+      "code": "RSA",
+      "confederation": "CAF",
+      "strengthRating": 66
     },
     {
       "id": "kor",
@@ -102,10 +108,10 @@
       "strengthRating": 70
     },
     {
-      "id": "rsa",
-      "name": "Sudáfrica",
-      "code": "RSA",
-      "confederation": "CAF",
+      "id": "qat",
+      "name": "Catar",
+      "code": "QAT",
+      "confederation": "AFC",
       "strengthRating": 66
     },
     {
@@ -123,25 +129,11 @@
       "strengthRating": 70
     },
     {
-      "id": "qat",
-      "name": "Catar",
-      "code": "QAT",
-      "confederation": "AFC",
-      "strengthRating": 66
-    },
-    {
-      "id": "bih",
-      "name": "Bosnia-Herzegovina",
-      "code": "BIH",
-      "confederation": "UEFA",
-      "strengthRating": 68
-    },
-    {
-      "id": "sco",
-      "name": "Escocia",
-      "code": "SCO",
-      "confederation": "UEFA",
-      "strengthRating": 71
+      "id": "bra",
+      "name": "Brasil",
+      "code": "BRA",
+      "confederation": "CONMEBOL",
+      "strengthRating": 90
     },
     {
       "id": "mar",
@@ -151,13 +143,6 @@
       "strengthRating": 80
     },
     {
-      "id": "bra",
-      "name": "Brasil",
-      "code": "BRA",
-      "confederation": "CONMEBOL",
-      "strengthRating": 90
-    },
-    {
       "id": "hai",
       "name": "Haití",
       "code": "HAI",
@@ -165,11 +150,25 @@
       "strengthRating": 55
     },
     {
+      "id": "sco",
+      "name": "Escocia",
+      "code": "SCO",
+      "confederation": "UEFA",
+      "strengthRating": 71
+    },
+    {
       "id": "usa",
-      "name": "EE. UU.",
+      "name": "Estados Unidos",
       "code": "USA",
       "confederation": "CONCACAF",
       "strengthRating": 76
+    },
+    {
+      "id": "par",
+      "name": "Paraguay",
+      "code": "PAR",
+      "confederation": "CONMEBOL",
+      "strengthRating": 68
     },
     {
       "id": "aus",
@@ -186,18 +185,18 @@
       "strengthRating": 76
     },
     {
-      "id": "par",
-      "name": "Paraguay",
-      "code": "PAR",
-      "confederation": "CONMEBOL",
-      "strengthRating": 68
-    },
-    {
       "id": "ger",
       "name": "Alemania",
       "code": "GER",
       "confederation": "UEFA",
       "strengthRating": 85
+    },
+    {
+      "id": "cuw",
+      "name": "Curazao",
+      "code": "CUW",
+      "confederation": "CONCACAF",
+      "strengthRating": 52
     },
     {
       "id": "civ",
@@ -214,18 +213,11 @@
       "strengthRating": 72
     },
     {
-      "id": "cuw",
-      "name": "Curazao",
-      "code": "CUW",
-      "confederation": "CONCACAF",
-      "strengthRating": 52
-    },
-    {
-      "id": "swe",
-      "name": "Suecia",
-      "code": "SWE",
+      "id": "ned",
+      "name": "Países Bajos",
+      "code": "NED",
       "confederation": "UEFA",
-      "strengthRating": 74
+      "strengthRating": 86
     },
     {
       "id": "jpn",
@@ -235,11 +227,11 @@
       "strengthRating": 78
     },
     {
-      "id": "ned",
-      "name": "Países Bajos",
-      "code": "NED",
+      "id": "swe",
+      "name": "Suecia",
+      "code": "SWE",
       "confederation": "UEFA",
-      "strengthRating": 86
+      "strengthRating": 74
     },
     {
       "id": "tun",
@@ -284,13 +276,6 @@
       "strengthRating": 92
     },
     {
-      "id": "uru",
-      "name": "Uruguay",
-      "code": "URU",
-      "confederation": "CONMEBOL",
-      "strengthRating": 82
-    },
-    {
       "id": "cpv",
       "name": "Cabo Verde",
       "code": "CPV",
@@ -305,18 +290,18 @@
       "strengthRating": 64
     },
     {
+      "id": "uru",
+      "name": "Uruguay",
+      "code": "URU",
+      "confederation": "CONMEBOL",
+      "strengthRating": 82
+    },
+    {
       "id": "fra",
       "name": "Francia",
       "code": "FRA",
       "confederation": "UEFA",
       "strengthRating": 92
-    },
-    {
-      "id": "nor",
-      "name": "Noruega",
-      "code": "NOR",
-      "confederation": "UEFA",
-      "strengthRating": 78
     },
     {
       "id": "sen",
@@ -333,11 +318,11 @@
       "strengthRating": 63
     },
     {
-      "id": "aut",
-      "name": "Austria",
-      "code": "AUT",
+      "id": "nor",
+      "name": "Noruega",
+      "code": "NOR",
       "confederation": "UEFA",
-      "strengthRating": 74
+      "strengthRating": 78
     },
     {
       "id": "arg",
@@ -354,6 +339,13 @@
       "strengthRating": 72
     },
     {
+      "id": "aut",
+      "name": "Austria",
+      "code": "AUT",
+      "confederation": "UEFA",
+      "strengthRating": 74
+    },
+    {
       "id": "jor",
       "name": "Jordania",
       "code": "JOR",
@@ -366,13 +358,6 @@
       "code": "POR",
       "confederation": "UEFA",
       "strengthRating": 88
-    },
-    {
-      "id": "col",
-      "name": "Colombia",
-      "code": "COL",
-      "confederation": "CONMEBOL",
-      "strengthRating": 81
     },
     {
       "id": "cod",
@@ -389,11 +374,11 @@
       "strengthRating": 64
     },
     {
-      "id": "cro",
-      "name": "Croacia",
-      "code": "CRO",
-      "confederation": "UEFA",
-      "strengthRating": 82
+      "id": "col",
+      "name": "Colombia",
+      "code": "COL",
+      "confederation": "CONMEBOL",
+      "strengthRating": 81
     },
     {
       "id": "eng",
@@ -401,6 +386,13 @@
       "code": "ENG",
       "confederation": "UEFA",
       "strengthRating": 89
+    },
+    {
+      "id": "cro",
+      "name": "Croacia",
+      "code": "CRO",
+      "confederation": "UEFA",
+      "strengthRating": 82
     },
     {
       "id": "gha",
@@ -431,6 +423,18 @@
       ]
     },
     {
+      "teamId": "rsa",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 0,
+      "goalsAgainst": 2,
+      "sequence": [
+        "L"
+      ]
+    },
+    {
       "teamId": "kor",
       "played": 1,
       "wins": 1,
@@ -455,91 +459,49 @@
       ]
     },
     {
-      "teamId": "rsa",
-      "played": 1,
+      "teamId": "qat",
+      "played": 0,
       "wins": 0,
       "draws": 0,
-      "losses": 1,
+      "losses": 0,
       "goalsFor": 0,
-      "goalsAgainst": 2,
-      "sequence": [
-        "L"
-      ]
+      "goalsAgainst": 0,
+      "sequence": []
     },
     {
       "teamId": "sui",
-      "played": 1,
+      "played": 0,
       "wins": 0,
-      "draws": 1,
+      "draws": 0,
       "losses": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "sequence": [
-        "D"
-      ]
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
     },
     {
       "teamId": "can",
-      "played": 1,
+      "played": 0,
       "wins": 0,
-      "draws": 1,
-      "losses": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "sequence": [
-        "D"
-      ]
-    },
-    {
-      "teamId": "qat",
-      "played": 1,
-      "wins": 0,
-      "draws": 1,
-      "losses": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "sequence": [
-        "D"
-      ]
-    },
-    {
-      "teamId": "bih",
-      "played": 1,
-      "wins": 0,
-      "draws": 1,
-      "losses": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "sequence": [
-        "D"
-      ]
-    },
-    {
-      "teamId": "sco",
-      "played": 1,
-      "wins": 1,
       "draws": 0,
       "losses": 0,
-      "goalsFor": 1,
+      "goalsFor": 0,
       "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "bra",
+      "played": 1,
+      "wins": 0,
+      "draws": 1,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 1,
       "sequence": [
-        "W"
+        "D"
       ]
     },
     {
       "teamId": "mar",
-      "played": 1,
-      "wins": 0,
-      "draws": 1,
-      "losses": 0,
-      "goalsFor": 1,
-      "goalsAgainst": 1,
-      "sequence": [
-        "D"
-      ]
-    },
-    {
-      "teamId": "bra",
       "played": 1,
       "wins": 0,
       "draws": 1,
@@ -563,6 +525,18 @@
       ]
     },
     {
+      "teamId": "sco",
+      "played": 1,
+      "wins": 1,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 1,
+      "goalsAgainst": 0,
+      "sequence": [
+        "W"
+      ]
+    },
+    {
       "teamId": "usa",
       "played": 1,
       "wins": 1,
@@ -572,6 +546,18 @@
       "goalsAgainst": 1,
       "sequence": [
         "W"
+      ]
+    },
+    {
+      "teamId": "par",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 4,
+      "sequence": [
+        "L"
       ]
     },
     {
@@ -599,18 +585,6 @@
       ]
     },
     {
-      "teamId": "par",
-      "played": 1,
-      "wins": 0,
-      "draws": 0,
-      "losses": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 4,
-      "sequence": [
-        "L"
-      ]
-    },
-    {
       "teamId": "ger",
       "played": 1,
       "wins": 1,
@@ -620,6 +594,18 @@
       "goalsAgainst": 1,
       "sequence": [
         "W"
+      ]
+    },
+    {
+      "teamId": "cuw",
+      "played": 1,
+      "wins": 0,
+      "draws": 0,
+      "losses": 1,
+      "goalsFor": 1,
+      "goalsAgainst": 7,
+      "sequence": [
+        "L"
       ]
     },
     {
@@ -647,27 +633,15 @@
       ]
     },
     {
-      "teamId": "cuw",
+      "teamId": "ned",
       "played": 1,
       "wins": 0,
-      "draws": 0,
-      "losses": 1,
-      "goalsFor": 1,
-      "goalsAgainst": 7,
-      "sequence": [
-        "L"
-      ]
-    },
-    {
-      "teamId": "swe",
-      "played": 1,
-      "wins": 1,
-      "draws": 0,
+      "draws": 1,
       "losses": 0,
-      "goalsFor": 5,
-      "goalsAgainst": 1,
+      "goalsFor": 2,
+      "goalsAgainst": 2,
       "sequence": [
-        "W"
+        "D"
       ]
     },
     {
@@ -683,15 +657,15 @@
       ]
     },
     {
-      "teamId": "ned",
+      "teamId": "swe",
       "played": 1,
-      "wins": 0,
-      "draws": 1,
+      "wins": 1,
+      "draws": 0,
       "losses": 0,
-      "goalsFor": 2,
-      "goalsAgainst": 2,
+      "goalsFor": 5,
+      "goalsAgainst": 1,
       "sequence": [
-        "D"
+        "W"
       ]
     },
     {
@@ -705,116 +679,386 @@
       "sequence": [
         "L"
       ]
+    },
+    {
+      "teamId": "bel",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "egy",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "irn",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "nzl",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "esp",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "cpv",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "ksa",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "uru",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "fra",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "sen",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "irq",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "nor",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "arg",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "alg",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "aut",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "jor",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "por",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "cod",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "uzb",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "col",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "eng",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "cro",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "gha",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
+    },
+    {
+      "teamId": "pan",
+      "played": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 0,
+      "goalsFor": 0,
+      "goalsAgainst": 0,
+      "sequence": []
     }
   ],
   "matches": [
     {
       "id": "m01",
       "homeTeamId": "mex",
-      "awayTeamId": "kor",
-      "group": "A",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m02",
-      "homeTeamId": "mex",
-      "awayTeamId": "cze",
-      "group": "A",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m03",
-      "homeTeamId": "mex",
       "awayTeamId": "rsa",
       "group": "A",
       "stage": "GROUP",
       "status": "FINISHED",
+      "kickoff": "2026-06-11",
+      "venue": "Mexico City",
       "homeScore": 2,
       "awayScore": 0
     },
     {
-      "id": "m04",
+      "id": "m02",
       "homeTeamId": "kor",
       "awayTeamId": "cze",
       "group": "A",
       "stage": "GROUP",
       "status": "FINISHED",
+      "kickoff": "2026-06-11",
+      "venue": "Guadalajara (Zapopan)",
       "homeScore": 2,
       "awayScore": 1
     },
     {
-      "id": "m05",
-      "homeTeamId": "kor",
-      "awayTeamId": "rsa",
-      "group": "A",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m06",
+      "id": "m03",
       "homeTeamId": "cze",
       "awayTeamId": "rsa",
       "group": "A",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-18",
+      "venue": "Atlanta"
+    },
+    {
+      "id": "m04",
+      "homeTeamId": "mex",
+      "awayTeamId": "kor",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-18",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    {
+      "id": "m05",
+      "homeTeamId": "cze",
+      "awayTeamId": "mex",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-24",
+      "venue": "Mexico City"
+    },
+    {
+      "id": "m06",
+      "homeTeamId": "rsa",
+      "awayTeamId": "kor",
+      "group": "A",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-24",
+      "venue": "Monterrey (Guadalupe)"
     },
     {
       "id": "m07",
-      "homeTeamId": "sui",
-      "awayTeamId": "can",
+      "homeTeamId": "qat",
+      "awayTeamId": "sui",
       "group": "B",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-13",
+      "venue": "San Francisco Bay Area (Santa Clara)"
     },
     {
       "id": "m08",
-      "homeTeamId": "sui",
+      "homeTeamId": "can",
       "awayTeamId": "qat",
       "group": "B",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-18",
+      "venue": "Vancouver"
     },
     {
       "id": "m09",
       "homeTeamId": "sui",
-      "awayTeamId": "bih",
+      "awayTeamId": "can",
       "group": "B",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-24",
+      "venue": "Vancouver"
     },
     {
       "id": "m10",
-      "homeTeamId": "can",
-      "awayTeamId": "qat",
-      "group": "B",
+      "homeTeamId": "bra",
+      "awayTeamId": "mar",
+      "group": "C",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "FINISHED",
+      "kickoff": "2026-06-13",
+      "venue": "New York/New Jersey (East Rutherford)",
+      "homeScore": 1,
+      "awayScore": 1
     },
     {
       "id": "m11",
-      "homeTeamId": "can",
-      "awayTeamId": "bih",
-      "group": "B",
+      "homeTeamId": "hai",
+      "awayTeamId": "sco",
+      "group": "C",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "FINISHED",
+      "kickoff": "2026-06-13",
+      "venue": "Boston (Foxborough)",
+      "homeScore": 0,
+      "awayScore": 1
     },
     {
       "id": "m12",
-      "homeTeamId": "qat",
-      "awayTeamId": "bih",
-      "group": "B",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m13",
       "homeTeamId": "sco",
       "awayTeamId": "mar",
       "group": "C",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-19",
+      "venue": "Boston (Foxborough)"
+    },
+    {
+      "id": "m13",
+      "homeTeamId": "bra",
+      "awayTeamId": "hai",
+      "group": "C",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-19",
+      "venue": "Philadelphia"
     },
     {
       "id": "m14",
@@ -822,487 +1066,571 @@
       "awayTeamId": "bra",
       "group": "C",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-24",
+      "venue": "Miami (Miami Gardens)"
     },
     {
       "id": "m15",
-      "homeTeamId": "sco",
+      "homeTeamId": "mar",
       "awayTeamId": "hai",
       "group": "C",
       "stage": "GROUP",
-      "status": "FINISHED",
-      "homeScore": 1,
-      "awayScore": 0
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-24",
+      "venue": "Atlanta"
     },
     {
       "id": "m16",
-      "homeTeamId": "mar",
-      "awayTeamId": "bra",
-      "group": "C",
-      "stage": "GROUP",
-      "status": "FINISHED",
-      "homeScore": 1,
-      "awayScore": 1
-    },
-    {
-      "id": "m17",
-      "homeTeamId": "mar",
-      "awayTeamId": "hai",
-      "group": "C",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m18",
-      "homeTeamId": "bra",
-      "awayTeamId": "hai",
-      "group": "C",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m19",
-      "homeTeamId": "usa",
-      "awayTeamId": "aus",
-      "group": "D",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m20",
-      "homeTeamId": "usa",
-      "awayTeamId": "tur",
-      "group": "D",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m21",
       "homeTeamId": "usa",
       "awayTeamId": "par",
       "group": "D",
       "stage": "GROUP",
       "status": "FINISHED",
+      "kickoff": "2026-06-12",
+      "venue": "Los Angeles (Inglewood)",
       "homeScore": 4,
       "awayScore": 1
     },
     {
-      "id": "m22",
+      "id": "m17",
       "homeTeamId": "aus",
       "awayTeamId": "tur",
       "group": "D",
       "stage": "GROUP",
       "status": "FINISHED",
+      "kickoff": "2026-06-13",
+      "venue": "Vancouver",
       "homeScore": 2,
       "awayScore": 0
     },
     {
-      "id": "m23",
-      "homeTeamId": "aus",
-      "awayTeamId": "par",
+      "id": "m18",
+      "homeTeamId": "usa",
+      "awayTeamId": "aus",
       "group": "D",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-19",
+      "venue": "Seattle"
     },
     {
-      "id": "m24",
+      "id": "m19",
       "homeTeamId": "tur",
       "awayTeamId": "par",
       "group": "D",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-19",
+      "venue": "San Francisco Bay Area (Santa Clara)"
     },
     {
-      "id": "m25",
-      "homeTeamId": "ger",
-      "awayTeamId": "civ",
-      "group": "E",
+      "id": "m20",
+      "homeTeamId": "tur",
+      "awayTeamId": "usa",
+      "group": "D",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-25",
+      "venue": "Los Angeles (Inglewood)"
     },
     {
-      "id": "m26",
-      "homeTeamId": "ger",
-      "awayTeamId": "ecu",
-      "group": "E",
+      "id": "m21",
+      "homeTeamId": "par",
+      "awayTeamId": "aus",
+      "group": "D",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-25",
+      "venue": "San Francisco Bay Area (Santa Clara)"
     },
     {
-      "id": "m27",
+      "id": "m22",
       "homeTeamId": "ger",
       "awayTeamId": "cuw",
       "group": "E",
       "stage": "GROUP",
       "status": "FINISHED",
+      "kickoff": "2026-06-14",
+      "venue": "Houston",
       "homeScore": 7,
       "awayScore": 1
     },
     {
-      "id": "m28",
+      "id": "m23",
       "homeTeamId": "civ",
       "awayTeamId": "ecu",
       "group": "E",
       "stage": "GROUP",
       "status": "FINISHED",
+      "kickoff": "2026-06-14",
+      "venue": "Philadelphia",
       "homeScore": 1,
       "awayScore": 0
     },
     {
-      "id": "m29",
-      "homeTeamId": "civ",
-      "awayTeamId": "cuw",
+      "id": "m24",
+      "homeTeamId": "ger",
+      "awayTeamId": "civ",
       "group": "E",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-20",
+      "venue": "Toronto"
     },
     {
-      "id": "m30",
+      "id": "m25",
       "homeTeamId": "ecu",
       "awayTeamId": "cuw",
       "group": "E",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-20",
+      "venue": "Kansas City"
     },
     {
-      "id": "m31",
-      "homeTeamId": "swe",
-      "awayTeamId": "jpn",
-      "group": "F",
+      "id": "m26",
+      "homeTeamId": "cuw",
+      "awayTeamId": "civ",
+      "group": "E",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-25",
+      "venue": "Philadelphia"
     },
     {
-      "id": "m32",
-      "homeTeamId": "swe",
-      "awayTeamId": "ned",
-      "group": "F",
+      "id": "m27",
+      "homeTeamId": "ecu",
+      "awayTeamId": "ger",
+      "group": "E",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-25",
+      "venue": "New York/New Jersey (East Rutherford)"
     },
     {
-      "id": "m33",
-      "homeTeamId": "swe",
-      "awayTeamId": "tun",
-      "group": "F",
-      "stage": "GROUP",
-      "status": "FINISHED",
-      "homeScore": 5,
-      "awayScore": 1
-    },
-    {
-      "id": "m34",
+      "id": "m28",
       "homeTeamId": "ned",
       "awayTeamId": "jpn",
       "group": "F",
       "stage": "GROUP",
       "status": "FINISHED",
+      "kickoff": "2026-06-14",
+      "venue": "Dallas (Arlington)",
       "homeScore": 2,
       "awayScore": 2
     },
     {
-      "id": "m35",
-      "homeTeamId": "jpn",
+      "id": "m29",
+      "homeTeamId": "swe",
       "awayTeamId": "tun",
       "group": "F",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "FINISHED",
+      "kickoff": "2026-06-14",
+      "venue": "Monterrey (Guadalupe)",
+      "homeScore": 5,
+      "awayScore": 1
     },
     {
-      "id": "m36",
+      "id": "m30",
       "homeTeamId": "ned",
-      "awayTeamId": "tun",
+      "awayTeamId": "swe",
       "group": "F",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-20",
+      "venue": "Houston"
     },
     {
-      "id": "m37",
+      "id": "m31",
+      "homeTeamId": "tun",
+      "awayTeamId": "jpn",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-20",
+      "venue": "Monterrey (Guadalupe)"
+    },
+    {
+      "id": "m32",
+      "homeTeamId": "jpn",
+      "awayTeamId": "swe",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-25",
+      "venue": "Dallas (Arlington)"
+    },
+    {
+      "id": "m33",
+      "homeTeamId": "tun",
+      "awayTeamId": "ned",
+      "group": "F",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-25",
+      "venue": "Kansas City"
+    },
+    {
+      "id": "m34",
       "homeTeamId": "bel",
       "awayTeamId": "egy",
       "group": "G",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-15",
+      "venue": "Seattle"
     },
     {
-      "id": "m38",
-      "homeTeamId": "bel",
-      "awayTeamId": "irn",
-      "group": "G",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m39",
-      "homeTeamId": "bel",
-      "awayTeamId": "nzl",
-      "group": "G",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m40",
-      "homeTeamId": "egy",
-      "awayTeamId": "irn",
-      "group": "G",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m41",
-      "homeTeamId": "egy",
-      "awayTeamId": "nzl",
-      "group": "G",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m42",
+      "id": "m35",
       "homeTeamId": "irn",
       "awayTeamId": "nzl",
       "group": "G",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-15",
+      "venue": "Los Angeles (Inglewood)"
     },
     {
-      "id": "m43",
+      "id": "m36",
+      "homeTeamId": "bel",
+      "awayTeamId": "irn",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-21",
+      "venue": "Los Angeles (Inglewood)"
+    },
+    {
+      "id": "m37",
+      "homeTeamId": "nzl",
+      "awayTeamId": "egy",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-21",
+      "venue": "Vancouver"
+    },
+    {
+      "id": "m38",
+      "homeTeamId": "egy",
+      "awayTeamId": "irn",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-26",
+      "venue": "Seattle"
+    },
+    {
+      "id": "m39",
+      "homeTeamId": "nzl",
+      "awayTeamId": "bel",
+      "group": "G",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-26",
+      "venue": "Vancouver"
+    },
+    {
+      "id": "m40",
       "homeTeamId": "esp",
+      "awayTeamId": "cpv",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-15",
+      "venue": "Atlanta"
+    },
+    {
+      "id": "m41",
+      "homeTeamId": "ksa",
       "awayTeamId": "uru",
       "group": "H",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-15",
+      "venue": "Miami (Miami Gardens)"
+    },
+    {
+      "id": "m42",
+      "homeTeamId": "esp",
+      "awayTeamId": "ksa",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-21",
+      "venue": "Atlanta"
+    },
+    {
+      "id": "m43",
+      "homeTeamId": "uru",
+      "awayTeamId": "cpv",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-21",
+      "venue": "Miami (Miami Gardens)"
     },
     {
       "id": "m44",
-      "homeTeamId": "esp",
-      "awayTeamId": "cpv",
-      "group": "H",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m45",
-      "homeTeamId": "esp",
-      "awayTeamId": "ksa",
-      "group": "H",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m46",
-      "homeTeamId": "uru",
-      "awayTeamId": "cpv",
-      "group": "H",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m47",
-      "homeTeamId": "uru",
-      "awayTeamId": "ksa",
-      "group": "H",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m48",
       "homeTeamId": "cpv",
       "awayTeamId": "ksa",
       "group": "H",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-26",
+      "venue": "Houston"
     },
     {
-      "id": "m49",
+      "id": "m45",
+      "homeTeamId": "uru",
+      "awayTeamId": "esp",
+      "group": "H",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-26",
+      "venue": "Guadalajara (Zapopan)"
+    },
+    {
+      "id": "m46",
       "homeTeamId": "fra",
+      "awayTeamId": "sen",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-16",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    {
+      "id": "m47",
+      "homeTeamId": "irq",
       "awayTeamId": "nor",
       "group": "I",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-16",
+      "venue": "Boston (Foxborough)"
+    },
+    {
+      "id": "m48",
+      "homeTeamId": "fra",
+      "awayTeamId": "irq",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-22",
+      "venue": "Philadelphia"
+    },
+    {
+      "id": "m49",
+      "homeTeamId": "nor",
+      "awayTeamId": "sen",
+      "group": "I",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-22",
+      "venue": "New York/New Jersey (East Rutherford)"
     },
     {
       "id": "m50",
-      "homeTeamId": "fra",
-      "awayTeamId": "sen",
+      "homeTeamId": "nor",
+      "awayTeamId": "fra",
       "group": "I",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-26",
+      "venue": "Boston (Foxborough)"
     },
     {
       "id": "m51",
-      "homeTeamId": "fra",
-      "awayTeamId": "irq",
-      "group": "I",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m52",
-      "homeTeamId": "nor",
-      "awayTeamId": "sen",
-      "group": "I",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m53",
-      "homeTeamId": "nor",
-      "awayTeamId": "irq",
-      "group": "I",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m54",
       "homeTeamId": "sen",
       "awayTeamId": "irq",
       "group": "I",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-26",
+      "venue": "Toronto"
+    },
+    {
+      "id": "m52",
+      "homeTeamId": "arg",
+      "awayTeamId": "alg",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-16",
+      "venue": "Kansas City"
+    },
+    {
+      "id": "m53",
+      "homeTeamId": "aut",
+      "awayTeamId": "jor",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-16",
+      "venue": "San Francisco Bay Area (Santa Clara)"
+    },
+    {
+      "id": "m54",
+      "homeTeamId": "arg",
+      "awayTeamId": "aut",
+      "group": "J",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-22",
+      "venue": "Dallas (Arlington)"
     },
     {
       "id": "m55",
-      "homeTeamId": "aut",
-      "awayTeamId": "arg",
+      "homeTeamId": "jor",
+      "awayTeamId": "alg",
       "group": "J",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-22",
+      "venue": "San Francisco Bay Area (Santa Clara)"
     },
     {
       "id": "m56",
-      "homeTeamId": "aut",
-      "awayTeamId": "alg",
+      "homeTeamId": "alg",
+      "awayTeamId": "aut",
       "group": "J",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-27",
+      "venue": "Kansas City"
     },
     {
       "id": "m57",
-      "homeTeamId": "aut",
-      "awayTeamId": "jor",
+      "homeTeamId": "jor",
+      "awayTeamId": "arg",
       "group": "J",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-27",
+      "venue": "Dallas (Arlington)"
     },
     {
       "id": "m58",
-      "homeTeamId": "arg",
-      "awayTeamId": "alg",
-      "group": "J",
+      "homeTeamId": "por",
+      "awayTeamId": "cod",
+      "group": "K",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-17",
+      "venue": "Houston"
     },
     {
       "id": "m59",
-      "homeTeamId": "arg",
-      "awayTeamId": "jor",
-      "group": "J",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m60",
-      "homeTeamId": "alg",
-      "awayTeamId": "jor",
-      "group": "J",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m61",
-      "homeTeamId": "por",
+      "homeTeamId": "uzb",
       "awayTeamId": "col",
       "group": "K",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-17",
+      "venue": "Mexico City"
+    },
+    {
+      "id": "m60",
+      "homeTeamId": "por",
+      "awayTeamId": "uzb",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-23",
+      "venue": "Houston"
+    },
+    {
+      "id": "m61",
+      "homeTeamId": "col",
+      "awayTeamId": "cod",
+      "group": "K",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-23",
+      "venue": "Guadalajara (Zapopan)"
     },
     {
       "id": "m62",
-      "homeTeamId": "por",
-      "awayTeamId": "cod",
+      "homeTeamId": "col",
+      "awayTeamId": "por",
       "group": "K",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-27",
+      "venue": "Miami (Miami Gardens)"
     },
     {
       "id": "m63",
-      "homeTeamId": "por",
-      "awayTeamId": "uzb",
-      "group": "K",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m64",
-      "homeTeamId": "col",
-      "awayTeamId": "cod",
-      "group": "K",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m65",
-      "homeTeamId": "col",
-      "awayTeamId": "uzb",
-      "group": "K",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m66",
       "homeTeamId": "cod",
       "awayTeamId": "uzb",
       "group": "K",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-27",
+      "venue": "Atlanta"
     },
     {
-      "id": "m67",
-      "homeTeamId": "cro",
-      "awayTeamId": "eng",
-      "group": "L",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m68",
-      "homeTeamId": "cro",
-      "awayTeamId": "gha",
-      "group": "L",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m69",
-      "homeTeamId": "cro",
-      "awayTeamId": "pan",
-      "group": "L",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m70",
+      "id": "m64",
       "homeTeamId": "eng",
-      "awayTeamId": "gha",
+      "awayTeamId": "cro",
       "group": "L",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-17",
+      "venue": "Dallas (Arlington)"
     },
     {
-      "id": "m71",
-      "homeTeamId": "eng",
-      "awayTeamId": "pan",
-      "group": "L",
-      "stage": "GROUP",
-      "status": "SCHEDULED"
-    },
-    {
-      "id": "m72",
+      "id": "m65",
       "homeTeamId": "gha",
       "awayTeamId": "pan",
       "group": "L",
       "stage": "GROUP",
-      "status": "SCHEDULED"
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-17",
+      "venue": "Toronto"
+    },
+    {
+      "id": "m66",
+      "homeTeamId": "eng",
+      "awayTeamId": "gha",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-23",
+      "venue": "Boston (Foxborough)"
+    },
+    {
+      "id": "m67",
+      "homeTeamId": "pan",
+      "awayTeamId": "cro",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-23",
+      "venue": "Toronto"
+    },
+    {
+      "id": "m68",
+      "homeTeamId": "pan",
+      "awayTeamId": "eng",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-27",
+      "venue": "New York/New Jersey (East Rutherford)"
+    },
+    {
+      "id": "m69",
+      "homeTeamId": "cro",
+      "awayTeamId": "gha",
+      "group": "L",
+      "stage": "GROUP",
+      "status": "SCHEDULED",
+      "kickoff": "2026-06-27",
+      "venue": "Philadelphia"
     }
   ]
 }
