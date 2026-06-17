@@ -60,6 +60,33 @@
       </section>
     </div>
 
+    <section class="rtm-card pad">
+      <h2>Mercados de goles</h2>
+      <div class="mk-grid">
+        <div class="mk"><span class="rtm-muted">Ambos anotan</span><b>{{ r.prediction.markets.bothTeamsScore }}%</b></div>
+        <div class="mk"><span class="rtm-muted">Over 2.5 goles</span><b>{{ r.prediction.markets.over25 }}%</b></div>
+        <div class="mk"><span class="rtm-muted">Under 2.5 goles</span><b>{{ 100 - r.prediction.markets.over25 }}%</b></div>
+        <div class="mk"><span class="rtm-muted">Marcador más probable</span><b>{{ r.prediction.markets.mostLikely.home }}–{{ r.prediction.markets.mostLikely.away }}</b></div>
+        <div class="mk"><span class="rtm-muted">Portería a cero {{ r.home.code }}</span><b>{{ r.prediction.markets.homeCleanSheet }}%</b></div>
+        <div class="mk"><span class="rtm-muted">Portería a cero {{ r.away.code }}</span><b>{{ r.prediction.markets.awayCleanSheet }}%</b></div>
+        <div class="mk"><span class="rtm-muted">Puntos esperados {{ r.home.code }}</span><b>{{ r.prediction.markets.expectedPoints.home }}</b></div>
+        <div class="mk"><span class="rtm-muted">Puntos esperados {{ r.away.code }}</span><b>{{ r.prediction.markets.expectedPoints.away }}</b></div>
+      </div>
+      <div class="scorelines rtm-muted">
+        Marcadores más probables:
+        @for (s of r.prediction.markets.topScorelines; track $index) {
+          <span class="sl">{{ s.home }}–{{ s.away }} <b>{{ s.probability }}%</b></span>
+        }
+      </div>
+    </section>
+
+    <section class="rtm-card pad">
+      <h2>Desglose del modelo (0–100)</h2>
+      @for (row of breakdownRows(); track row.label) {
+        <rtm-stat-bar [label]="row.label" [home]="row.home" [away]="row.away" [decimals]="0" />
+      }
+    </section>
+
     <section class="rtm-card pad factors">
       <div>
         <h3>Factores a favor</h3>

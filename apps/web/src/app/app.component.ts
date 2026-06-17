@@ -17,7 +17,6 @@ import { ThemeService } from './core/theme.service';
           <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             >Dashboard</a
           >
-          <a routerLink="/grupos" routerLinkActive="active">Grupos</a>
           <a routerLink="/comparador" routerLinkActive="active">Comparador</a>
         </nav>
         <button

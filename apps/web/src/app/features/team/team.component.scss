@@ -116,6 +116,45 @@ h2 {
   font-size: 13px;
   font-weight: 600;
 }
+.rating-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.rating-head .big {
+  font-size: 44px;
+  line-height: 1;
+  color: var(--rtm-primary);
+}
+.bd-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 32px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.bd-track {
+  height: 8px;
+  background: var(--rtm-surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.bd-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rtm-primary), var(--rtm-accent));
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+.trends {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
 @media (max-width: 720px) {
   .two {
     grid-template-columns: 1fr;

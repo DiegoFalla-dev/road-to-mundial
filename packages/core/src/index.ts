@@ -3,6 +3,7 @@ export * from './types';
 export * from './model/weights';
 export * from './model/scoring';
 export * from './model/evaluator';
+export * from './model/trends';
 export * from './probability/poisson';
 export * from './probability/predictor';
 export * from './data/datasource';

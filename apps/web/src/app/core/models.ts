@@ -4,18 +4,32 @@
  * tipado de extremo a extremo con el backend.
  */
 import type {
+  FormTrends,
+  GoalMarkets,
   MatchPrediction,
   MatchResult,
+  Scoreline,
   ScoreBreakdown,
   TeamProfile,
   TeamRating,
 } from '@rtm/core';
 
-export type { MatchPrediction, MatchResult, ScoreBreakdown, TeamProfile, TeamRating };
+export type {
+  FormTrends,
+  GoalMarkets,
+  MatchPrediction,
+  MatchResult,
+  Scoreline,
+  ScoreBreakdown,
+  TeamProfile,
+  TeamRating,
+};
 
 export interface TeamProfileView extends TeamProfile {
   formation: string | null;
   goalDifference: number;
+  rating: TeamRating;
+  trends: FormTrends;
 }
 
 export interface MatchView {
@@ -47,26 +61,6 @@ export interface ComparisonResult {
   awayRating: TeamRating;
   prediction: MatchPrediction;
   modelVersion: string;
-}
-
-export interface StandingRowView {
-  teamId: string;
-  name: string;
-  code: string;
-  played: number;
-  wins: number;
-  draws: number;
-  losses: number;
-  goalsFor: number;
-  goalsAgainst: number;
-  goalDiff: number;
-  points: number;
-  rank: number;
-}
-
-export interface GroupStandings {
-  group: string;
-  rows: StandingRowView[];
 }
 
 /** Etiquetas legibles de cada componente del modelo de evaluación. */

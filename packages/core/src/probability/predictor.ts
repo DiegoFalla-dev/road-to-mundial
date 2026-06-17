@@ -15,7 +15,8 @@ import type {
 } from '../types';
 import { evaluateTeam } from '../model/evaluator';
 import { DEFAULT_WEIGHTS, type ModelWeights } from '../model/weights';
-import { outcomeShares } from './poisson';
+import { goalMarketShares, outcomeShares } from './poisson';
+import type { GoalMarkets } from '../types';
 
 export interface PredictorOptions {
   /** Pesos del modelo de evaluación. */
@@ -62,6 +63,7 @@ export function predictMatch(
 
   const shares = outcomeShares(lambdaHome, lambdaAway);
   const probabilities = toPercentages(shares);
+  const markets = buildMarkets(lambdaHome, lambdaAway, probabilities);
   const confidence = computeConfidence(probabilities, homeRating, awayRating);
 
   const { factorsFor, factorsAgainst, risks } = buildNarrative(
@@ -83,6 +85,7 @@ export function predictMatch(
     confidence,
     homeRating,
     awayRating,
+    markets,
     factorsFor,
     factorsAgainst,
     risks,
@@ -187,6 +190,35 @@ function buildNarrative(
   if (risks.length === 0) risks.push('Variabilidad inherente del fútbol: cualquier resultado es posible.');
 
   return { factorsFor, factorsAgainst, risks };
+}
+
+/** Construye los mercados de goles en porcentajes + puntos esperados. */
+function buildMarkets(
+  lambdaHome: number,
+  lambdaAway: number,
+  p: OutcomeProbabilities,
+): GoalMarkets {
+  const s = goalMarketShares(lambdaHome, lambdaAway);
+  const pct = (x: number) => Math.round(x * 100);
+  const sl = (c: { home: number; away: number; p: number }) => ({
+    home: c.home,
+    away: c.away,
+    probability: round(c.p * 100, 1),
+  });
+  return {
+    bothTeamsScore: pct(s.bothTeamsScore),
+    over15: pct(s.over15),
+    over25: pct(s.over25),
+    over35: pct(s.over35),
+    homeCleanSheet: pct(s.homeCleanSheet),
+    awayCleanSheet: pct(s.awayCleanSheet),
+    mostLikely: sl(s.mostLikely),
+    topScorelines: s.topScorelines.map(sl),
+    expectedPoints: {
+      home: round((3 * p.homeWin + p.draw) / 100, 2),
+      away: round((3 * p.awayWin + p.draw) / 100, 2),
+    },
+  };
 }
 
 function round(value: number, decimals: number): number {

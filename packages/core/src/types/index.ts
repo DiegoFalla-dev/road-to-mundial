@@ -124,9 +124,50 @@ export interface MatchPrediction {
   readonly confidence: ConfidenceLevel;
   readonly homeRating: TeamRating;
   readonly awayRating: TeamRating;
+  /** Mercados derivados del modelo de goles (Poisson). */
+  readonly markets: GoalMarkets;
   readonly factorsFor: readonly string[];
   readonly factorsAgainst: readonly string[];
   readonly risks: readonly string[];
   /** Advertencia obligatoria: estimación estadística, no garantía. */
   readonly disclaimer: string;
+}
+
+/** Un marcador concreto con su probabilidad (0–100). */
+export interface Scoreline {
+  readonly home: number;
+  readonly away: number;
+  readonly probability: number;
+}
+
+/** Mercados de goles derivados de la matriz de marcadores Poisson. */
+export interface GoalMarkets {
+  /** Probabilidad (%) de que ambos equipos anoten. */
+  readonly bothTeamsScore: number;
+  /** Probabilidad (%) de superar 1.5 / 2.5 / 3.5 goles totales. */
+  readonly over15: number;
+  readonly over25: number;
+  readonly over35: number;
+  /** Probabilidad (%) de portería a cero de local / visitante. */
+  readonly homeCleanSheet: number;
+  readonly awayCleanSheet: number;
+  /** Marcador más probable y los cinco más probables. */
+  readonly mostLikely: Scoreline;
+  readonly topScorelines: readonly Scoreline[];
+  /** Puntos esperados del partido (3·P(victoria)+1·P(empate)). */
+  readonly expectedPoints: { readonly home: number; readonly away: number };
+}
+
+/** Tendencias derivadas de la secuencia de resultados. */
+export interface FormTrends {
+  /** Racha actual (más reciente): tipo y cantidad. Null si no hay datos. */
+  readonly currentStreak: { readonly type: MatchResult; readonly count: number } | null;
+  /** Partidos sin perder desde el más reciente. */
+  readonly unbeatenRun: number;
+  /** Partidos sin ganar desde el más reciente. */
+  readonly winlessRun: number;
+  /** Puntos por partido en la ventana analizada. */
+  readonly pointsPerGame: number;
+  /** Porcentaje de victorias. */
+  readonly winRate: number;
 }

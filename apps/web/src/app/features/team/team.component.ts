@@ -2,7 +2,8 @@ import { Component, Input, OnInit, computed, inject, signal } from '@angular/cor
 import { DecimalPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../core/api.service';
-import type { MatchResult, TeamProfileView } from '../../core/models';
+import { BREAKDOWN_LABELS } from '../../core/models';
+import type { MatchResult, ScoreBreakdown, TeamProfileView } from '../../core/models';
 
 @Component({
   selector: 'rtm-team',
@@ -20,6 +21,31 @@ import type { MatchResult, TeamProfileView } from '../../core/models';
             @if (t.formation) { <span class="rtm-badge">Sistema {{ t.formation }}</span> }
             <span class="rtm-badge">Rating {{ t.historicalRating }}</span>
           </div>
+        </div>
+      </section>
+
+      <section class="rtm-card pad rtm-fade-in">
+        <h2>Valoración del modelo</h2>
+        <div class="rating-head">
+          <b class="big">{{ t.rating.composite | number: '1.0-0' }}</b>
+          <span class="rtm-muted">Puntaje compuesto (0–100)</span>
+        </div>
+        <div class="bd">
+          @for (b of breakdownRows(); track b.label) {
+            <div class="bd-row">
+              <span>{{ b.label }}</span>
+              <div class="bd-track"><div class="bd-fill" [style.width.%]="b.value"></div></div>
+              <b>{{ b.value }}</b>
+            </div>
+          }
+        </div>
+        <div class="trends">
+          @if (t.trends.currentStreak; as st) {
+            <span class="rtm-badge">Racha actual: {{ st.count }}{{ st.type }}</span>
+          }
+          <span class="rtm-badge">Sin perder: {{ t.trends.unbeatenRun }}</span>
+          <span class="rtm-badge">Puntos/partido: {{ t.trends.pointsPerGame }}</span>
+          <span class="rtm-badge">% victorias: {{ t.trends.winRate }}%</span>
         </div>
       </section>
 
@@ -80,6 +106,14 @@ export class TeamComponent implements OnInit {
   readonly recent = computed<MatchResult[]>(() => {
     const t = this.team();
     return t ? [...t.form[5].sequence] : [];
+  });
+
+  /** Desglose del rating (8 dimensiones, 0–100) para el perfil. */
+  readonly breakdownRows = computed(() => {
+    const t = this.team();
+    if (!t) return [];
+    const keys = Object.keys(BREAKDOWN_LABELS) as (keyof ScoreBreakdown)[];
+    return keys.map((k) => ({ label: BREAKDOWN_LABELS[k], value: Math.round(t.rating.breakdown[k]) }));
   });
 
   ngOnInit(): void {

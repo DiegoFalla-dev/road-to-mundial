@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import type {
   ComparisonResult,
-  GroupStandings,
   MatchDetail,
   MatchView,
   TeamProfile,
@@ -41,9 +40,5 @@ export class ApiService {
     return this.http.get<ComparisonResult>(`${this.base}/analysis/compare`, {
       params: { home, away },
     });
-  }
-
-  standings(): Observable<GroupStandings[]> {
-    return this.http.get<GroupStandings[]>(`${this.base}/standings`);
   }
 }

@@ -12,12 +12,6 @@ export const routes: Routes = [
     title: 'Dashboard · Road to Mundial 2026',
   },
   {
-    path: 'grupos',
-    loadComponent: () =>
-      import('./features/standings/standings.component').then((m) => m.StandingsComponent),
-    title: 'Grupos · Road to Mundial 2026',
-  },
-  {
     path: 'comparador',
     loadComponent: () =>
       import('./features/comparator/comparator.component').then((m) => m.ComparatorComponent),

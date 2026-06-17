@@ -56,3 +56,73 @@ export function outcomeShares(
   // Normalización por la masa truncada (total < 1 por el corte en maxGoals).
   return { homeWin: home / total, draw: draw / total, awayWin: away / total };
 }
+
+export interface ScorelineShare {
+  readonly home: number;
+  readonly away: number;
+  readonly p: number; // fracción [0,1]
+}
+
+export interface GoalMarketShares {
+  readonly bothTeamsScore: number;
+  readonly over15: number;
+  readonly over25: number;
+  readonly over35: number;
+  readonly homeCleanSheet: number;
+  readonly awayCleanSheet: number;
+  readonly mostLikely: ScorelineShare;
+  readonly topScorelines: readonly ScorelineShare[];
+}
+
+/**
+ * Deriva los mercados de goles de la matriz de marcadores Poisson:
+ * ambos anotan, líneas Over/Under, porterías a cero y marcadores más probables.
+ * Todas las fracciones se normalizan por la masa truncada.
+ */
+export function goalMarketShares(
+  lambdaHome: number,
+  lambdaAway: number,
+  maxGoals = 10,
+  topN = 5,
+): GoalMarketShares {
+  let total = 0;
+  let btts = 0;
+  let over15 = 0;
+  let over25 = 0;
+  let over35 = 0;
+  let homeCS = 0;
+  let awayCS = 0;
+  const cells: ScorelineShare[] = [];
+
+  for (let h = 0; h <= maxGoals; h++) {
+    const ph = poissonPmf(h, lambdaHome);
+    for (let a = 0; a <= maxGoals; a++) {
+      const p = ph * poissonPmf(a, lambdaAway);
+      total += p;
+      cells.push({ home: h, away: a, p });
+      if (h >= 1 && a >= 1) btts += p;
+      const totalGoals = h + a;
+      if (totalGoals > 1) over15 += p;
+      if (totalGoals > 2) over25 += p;
+      if (totalGoals > 3) over35 += p;
+      if (a === 0) homeCS += p; // local deja portería a cero
+      if (h === 0) awayCS += p; // visitante deja portería a cero
+    }
+  }
+
+  const norm = (x: number) => x / total;
+  const sorted = cells
+    .map((c) => ({ home: c.home, away: c.away, p: norm(c.p) }))
+    .sort((a, b) => b.p - a.p);
+
+  return {
+    bothTeamsScore: norm(btts),
+    over15: norm(over15),
+    over25: norm(over25),
+    over35: norm(over35),
+    homeCleanSheet: norm(homeCS),
+    awayCleanSheet: norm(awayCS),
+    mostLikely: sorted[0]!,
+    topScorelines: sorted.slice(0, topN),
+  };
+}

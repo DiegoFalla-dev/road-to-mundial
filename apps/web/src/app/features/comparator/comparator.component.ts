@@ -38,6 +38,18 @@ export class ComparatorComponent implements OnInit {
     ];
   });
 
+  /** Filas de desglose numérico del modelo (8 dimensiones) lado a lado. */
+  readonly breakdownRows = computed(() => {
+    const r = this.result();
+    if (!r) return [];
+    const keys = Object.keys(BREAKDOWN_LABELS) as (keyof ScoreBreakdown)[];
+    return keys.map((k) => ({
+      label: BREAKDOWN_LABELS[k],
+      home: Math.round(r.homeRating.breakdown[k]),
+      away: Math.round(r.awayRating.breakdown[k]),
+    }));
+  });
+
   ngOnInit(): void {
     this.api.listTeams().subscribe((t) => {
       this.teams.set(t);
