@@ -1,0 +1,193 @@
+@if (team(); as t) {
+  <a routerLink="/" class="inline-flex items-center gap-1 text-on-surface-variant hover:text-on-surface text-[12px] font-semibold transition-colors mb-stack-md">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span> Volver
+  </a>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+    <!-- Cabecera -->
+    <div class="md:col-span-8 bg-surface-container border border-outline-variant rounded-xl p-card-padding relative overflow-hidden">
+      <div class="absolute -right-20 -top-20 w-96 h-96 bg-tertiary/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-10 -bottom-10 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-stack-lg relative z-10">
+        <div class="w-28 h-28 shrink-0 bg-surface-container-high rounded-full border-2 border-tertiary flex items-center justify-center">
+          <span class="font-data-mono text-tertiary text-3xl">{{ t.code }}</span>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="px-2 py-0.5 bg-tertiary-container text-on-tertiary-container rounded text-[10px] uppercase tracking-wider border border-tertiary/30 font-semibold">{{ t.confederation }}</span>
+            <h1 class="text-[32px] md:text-[40px] leading-tight font-bold text-on-surface">{{ t.name }}</h1>
+          </div>
+          <p class="text-[16px] text-on-surface-variant max-w-lg mb-stack-md">Perfil analítico basado en datos de rendimiento reciente del Mundial 2026.</p>
+          <div class="flex flex-wrap gap-x-stack-lg gap-y-stack-sm pt-stack-sm border-t border-outline-variant/50">
+            <div class="flex flex-col">
+              <span class="text-[12px] text-on-surface-variant uppercase tracking-wider mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">analytics</span> Rating del modelo</span>
+              <span class="text-[32px] font-bold text-secondary leading-none">{{ t.rating.composite | number: '1.0-0' }}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[12px] text-on-surface-variant uppercase tracking-wider mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">public</span> Confederación</span>
+              <span class="text-[20px] font-semibold text-on-surface mt-1">{{ t.confederation }}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[12px] text-on-surface-variant uppercase tracking-wider mb-1 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schema</span> Formación</span>
+              <span class="font-data-mono text-primary text-lg mt-1 tracking-widest bg-surface-container-high px-2 py-1 rounded border border-outline-variant inline-block">{{ t.formation || 'N/D' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forma reciente -->
+    <div class="md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-card-padding flex flex-col">
+      <div class="flex items-center justify-between mb-stack-md">
+        <h3 class="text-[20px] font-semibold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-tertiary">monitoring</span> Forma Reciente
+        </h3>
+        <span class="text-[12px] text-on-surface-variant bg-surface-container-high px-2 py-1 rounded font-semibold">Últimos 5</span>
+      </div>
+      <div class="flex justify-between items-center flex-1">
+        @for (r of recent(); track $index; let last = $last) {
+          <div class="flex flex-col items-center gap-2">
+            <div class="w-10 h-10 rounded-full border-2 flex items-center justify-center font-bold"
+              [class.bg-secondary-container]="r === 'W'" [class.border-secondary]="r === 'W'" [class.text-secondary]="r === 'W'"
+              [class.bg-surface-container-high]="r === 'D'" [class.border-outline-variant]="r === 'D'" [class.text-on-surface-variant]="r === 'D'"
+              [class.bg-error-container]="r === 'L'" [class.border-error]="r === 'L'" [class.text-error]="r === 'L'">{{ r }}</div>
+          </div>
+          @if (!last) { <div class="h-[2px] w-3 bg-outline-variant"></div> }
+        }
+      </div>
+      <div class="text-[12px] text-on-surface-variant mt-stack-md pt-stack-sm border-t border-outline-variant/50 font-data-mono">
+        {{ t.form[5].wins }}V · {{ t.form[5].draws }}E · {{ t.form[5].losses }}D · {{ t.form[5].goalsFor }}:{{ t.form[5].goalsAgainst }} goles
+      </div>
+    </div>
+
+    <!-- Rendimiento por fase -->
+    <div class="md:col-span-12 bg-surface-container border border-outline-variant rounded-xl p-card-padding">
+      <h3 class="text-[20px] font-semibold text-on-surface flex items-center gap-2 mb-stack-lg">
+        <span class="material-symbols-outlined text-primary">analytics</span> Rendimiento por Fase
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+        <div class="bg-surface-container-low border border-outline-variant rounded-lg p-stack-md">
+          <h4 class="text-[12px] text-tertiary uppercase tracking-wider mb-stack-md flex items-center gap-2 font-semibold"><span class="material-symbols-outlined text-[16px]">sports_soccer</span> Ataque</h4>
+          <div class="space-y-4">
+            @for (s of attackStats(); track s.label) {
+              <div>
+                <div class="flex justify-between text-[14px] mb-1">
+                  <span class="text-on-surface">{{ s.label }}</span>
+                  <span class="font-data-mono text-primary">{{ s.value }}</span>
+                </div>
+                <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+                  <div class="bg-gradient-to-r from-tertiary-container to-tertiary h-2 rounded-full transition-all duration-700" [style.width.%]="s.pct"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+        <div class="bg-surface-container-low border border-outline-variant rounded-lg p-stack-md">
+          <h4 class="text-[12px] text-error uppercase tracking-wider mb-stack-md flex items-center gap-2 font-semibold"><span class="material-symbols-outlined text-[16px]">shield</span> Defensa</h4>
+          <div class="space-y-4">
+            @for (s of defenseStats(); track s.label) {
+              <div>
+                <div class="flex justify-between text-[14px] mb-1">
+                  <span class="text-on-surface">{{ s.label }}</span>
+                  <span class="font-data-mono text-primary">{{ s.value }}</span>
+                </div>
+                <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+                  <div class="bg-gradient-to-r from-error-container to-error h-2 rounded-full transition-all duration-700" [style.width.%]="s.pct"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <p class="text-[10px] text-on-surface-variant mt-3">Las barras de defensa representan solidez (mayor = mejor); en goles/remates recibidos, menor valor implica más solidez.</p>
+    </div>
+
+    <!-- Plantilla destacada -->
+    <div class="md:col-span-8 bg-surface-container border border-outline-variant rounded-xl p-card-padding flex flex-col">
+      <div class="flex items-center justify-between mb-stack-md">
+        <h3 class="text-[20px] font-semibold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">groups</span> Jugadores Clave
+        </h3>
+        <span class="text-[12px] text-on-surface-variant">Plantilla: {{ t.squad.keyPlayersAvailable }}/{{ t.squad.totalKeyPlayers }} disponibles</span>
+      </div>
+      @if (players().length) {
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-stack-sm">
+          @for (p of players(); track p.name) {
+            <div class="bg-surface-container-low border border-outline-variant rounded-lg p-3 flex flex-col hover:bg-surface-container-high transition-colors">
+              <div class="w-12 h-12 rounded-full bg-surface-container-highest mb-3 flex items-center justify-center border border-outline-variant font-data-mono text-tertiary text-[11px]">{{ t.code }}</div>
+              <h5 class="text-[14px] font-semibold text-on-surface truncate">{{ p.name }}</h5>
+              <span class="text-[12px] text-on-surface-variant mb-2">{{ p.position }}</span>
+              <div class="mt-auto flex justify-between items-end border-t border-outline-variant/50 pt-2">
+                <span class="text-[10px] text-on-surface-variant uppercase tracking-wide">Rating</span>
+                <span class="font-data-mono text-secondary">{{ p.rating | number: '1.1-1' }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="text-[14px] text-on-surface-variant italic flex-1 flex items-center">Datos de plantilla no disponibles para esta selección.</p>
+      }
+    </div>
+
+    <!-- Lateral: destacados + tendencias -->
+    <div class="md:col-span-4 flex flex-col gap-gutter">
+      <div class="bg-surface-container border border-outline-variant rounded-xl p-card-padding flex-1">
+        <h3 class="text-[20px] font-semibold text-on-surface mb-stack-md flex items-center gap-2">
+          <span class="material-symbols-outlined text-tertiary">military_tech</span> Destacados
+        </h3>
+        @if (topPlayers().length) {
+          <div class="flex flex-col gap-3">
+            @for (p of topPlayers(); track p.name; let i = $index) {
+              <div class="flex items-center gap-3 p-2 rounded hover:bg-surface-container-high transition-colors">
+                <div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center font-data-mono text-[12px] text-on-surface-variant border border-outline-variant">{{ i + 1 }}</div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-[14px] text-on-surface">{{ p.name }}</span>
+                    <span class="font-data-mono text-primary">{{ p.rating | number: '1.1-1' }}</span>
+                  </div>
+                  <div class="w-full bg-surface-container-highest rounded-full h-1">
+                    <div class="bg-tertiary h-1 rounded-full" [style.width.%]="p.rating * 10"></div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="text-[12px] text-on-surface-variant italic">Sin datos de jugadores.</p>
+        }
+      </div>
+
+      <div class="bg-surface-container border border-outline-variant rounded-xl p-card-padding">
+        <h3 class="text-[20px] font-semibold text-on-surface mb-stack-md flex items-center gap-2">
+          <span class="material-symbols-outlined text-outline">trending_up</span> Tendencias
+        </h3>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="flex flex-col items-center justify-center p-3 border border-outline-variant rounded bg-surface-container-low">
+            <span class="font-data-mono text-[20px] text-on-surface">
+              @if (t.trends.currentStreak; as st) { {{ st.count }}{{ st.type }} } @else { — }
+            </span>
+            <span class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wide">Racha actual</span>
+          </div>
+          <div class="flex flex-col items-center justify-center p-3 border border-outline-variant rounded bg-surface-container-low">
+            <span class="font-data-mono text-[20px] text-secondary">{{ t.trends.unbeatenRun }}</span>
+            <span class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wide">Sin perder</span>
+          </div>
+          <div class="flex flex-col items-center justify-center p-3 border border-outline-variant rounded bg-surface-container-low">
+            <span class="font-data-mono text-[20px] text-on-surface">{{ t.trends.pointsPerGame | number: '1.2-2' }}</span>
+            <span class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wide">Puntos / partido</span>
+          </div>
+          <div class="flex flex-col items-center justify-center p-3 border border-outline-variant rounded bg-surface-container-low">
+            <span class="font-data-mono text-[20px] text-tertiary">{{ t.trends.winRate }}%</span>
+            <span class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wide">Victorias</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+    <div class="md:col-span-8 h-44 bg-surface-container rounded-xl border border-outline-variant animate-pulse"></div>
+    <div class="md:col-span-4 h-44 bg-surface-container rounded-xl border border-outline-variant animate-pulse"></div>
+    <div class="md:col-span-12 h-56 bg-surface-container rounded-xl border border-outline-variant animate-pulse"></div>
+  </div>
+}

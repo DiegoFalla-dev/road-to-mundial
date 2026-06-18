@@ -1,0 +1,116 @@
+<!-- Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-stack-lg">
+  <div>
+    <h2 class="text-[32px] leading-[40px] font-bold text-on-surface mb-1">Centro de Estadísticas</h2>
+    <p class="text-[16px] text-on-surface-variant max-w-2xl">Análisis estadístico avanzado y métricas de rendimiento de todas las selecciones del Mundial 2026.</p>
+  </div>
+  <div class="flex gap-3 items-center">
+    <span class="text-[12px] text-on-surface-variant">Filtrar por confederación</span>
+    <div class="relative">
+      <select [ngModel]="confFilter()" (ngModelChange)="confFilter.set($event)"
+        class="appearance-none bg-surface-container border border-outline-variant rounded-lg pl-3 pr-8 py-1.5 text-[14px] text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none">
+        @for (c of confederations(); track c) { <option [value]="c">{{ c }}</option> }
+      </select>
+      <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+    </div>
+  </div>
+</header>
+
+<!-- Bento grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+  <!-- Matriz de selecciones -->
+  <section class="bg-surface-container/40 backdrop-blur-md border border-outline-variant/40 rounded-xl p-card-padding md:col-span-8 flex flex-col h-[600px]">
+    <div class="flex justify-between items-center mb-stack-md">
+      <h3 class="text-[20px] font-semibold text-on-surface">Matriz de Rendimiento por Selección</h3>
+      <span class="text-[12px] text-on-surface-variant">{{ rows().length }} selecciones · últimos 10 partidos</span>
+    </div>
+    <div class="overflow-auto flex-1 border border-outline-variant rounded-lg">
+      <table class="w-full text-left border-collapse min-w-[760px]">
+        <thead class="bg-surface-container sticky top-0 z-10">
+          <tr class="text-[12px] text-on-surface-variant uppercase tracking-wider">
+            <th class="p-3 border-b border-outline-variant sticky left-0 bg-surface-container z-20">Selección</th>
+            <th class="p-3 border-b border-outline-variant">Conf</th>
+            <th class="p-3 border-b border-outline-variant text-center">PJ</th>
+            <th class="p-3 border-b border-outline-variant text-center">V-E-D</th>
+            <th class="p-3 border-b border-outline-variant text-right">GF</th>
+            <th class="p-3 border-b border-outline-variant text-right">GC</th>
+            <th class="p-3 border-b border-outline-variant text-right">DG</th>
+            <th class="p-3 border-b border-outline-variant text-right">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant/50 font-data-mono text-[13px]">
+          @for (r of rows(); track r.id) {
+            <tr class="hover:bg-surface-container-highest transition-colors group cursor-pointer"
+              [routerLink]="['/seleccion', r.id]">
+              <td class="p-3 sticky left-0 bg-surface/90 backdrop-blur-sm group-hover:bg-surface-container-highest border-r border-outline-variant/30">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-[10px] text-tertiary">{{ r.code }}</div>
+                  <span class="text-[14px] text-on-surface font-semibold">{{ r.name }}</span>
+                </div>
+              </td>
+              <td class="p-3 text-on-surface-variant">{{ r.confederation }}</td>
+              <td class="p-3 text-center text-on-surface-variant">{{ r.played }}</td>
+              <td class="p-3 text-center text-on-surface">
+                <span class="text-secondary">{{ r.wins }}</span>-<span class="text-on-surface-variant">{{ r.draws }}</span>-<span class="text-error">{{ r.losses }}</span>
+              </td>
+              <td class="p-3 text-right text-secondary">{{ r.goalsFor }}</td>
+              <td class="p-3 text-right text-error">{{ r.goalsAgainst }}</td>
+              <td class="p-3 text-right font-bold" [class.text-secondary]="r.goalDiff > 0" [class.text-on-surface-variant]="r.goalDiff === 0" [class.text-error]="r.goalDiff < 0">{{ r.goalDiff > 0 ? '+' : '' }}{{ r.goalDiff }}</td>
+              <td class="p-3 text-right text-on-surface font-bold">{{ r.rating }}</td>
+            </tr>
+          } @empty {
+            <tr><td colspan="8" class="p-6 text-center text-on-surface-variant">Cargando datos…</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Lateral -->
+  <div class="md:col-span-4 flex flex-col gap-gutter">
+    <!-- Mejor ataque -->
+    <section class="bg-surface-container/40 backdrop-blur-md border border-outline-variant/40 rounded-xl p-card-padding">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-[20px] font-semibold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary">trending_up</span> Mejor Ataque
+        </h3>
+        <span class="text-[12px] text-on-surface-variant">Goles / partido</span>
+      </div>
+      <div class="flex flex-col gap-3">
+        @for (t of trending(); track t.code) {
+          <div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-high border border-outline-variant/50">
+            <div class="flex items-center gap-3">
+              <div class="w-7 h-7 rounded bg-surface-container-highest border border-outline-variant flex items-center justify-center font-data-mono text-[10px] text-tertiary">{{ t.code }}</div>
+              <span class="text-[14px] text-on-surface">{{ t.name }}</span>
+            </div>
+            <div class="flex items-center gap-1 text-secondary font-data-mono text-[14px]">
+              <span class="material-symbols-outlined text-[14px]">arrow_upward</span>{{ t.value | number: '1.2-2' }}
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Scatter de eficiencia -->
+    <section class="bg-surface-container/40 backdrop-blur-md border border-outline-variant/40 rounded-xl p-card-padding flex-1 flex flex-col relative overflow-hidden">
+      <h3 class="text-[20px] font-semibold text-on-surface mb-1">Eficiencia de Equipos</h3>
+      <p class="text-[12px] text-on-surface-variant mb-4">Ataque (goles/p) vs Defensa (goles recibidos/p)</p>
+      <div class="flex-1 w-full relative min-h-[260px] border-l border-b border-outline-variant/50 ml-5 mb-5">
+        <span class="absolute -left-6 top-1/2 -rotate-90 text-[10px] font-data-mono text-outline -translate-y-1/2">Goles recibidos</span>
+        <span class="absolute -bottom-5 left-1/2 text-[10px] font-data-mono text-outline -translate-x-1/2">Goles anotados</span>
+        <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-outline-variant/30"></div>
+        <div class="absolute top-0 left-1/2 h-full border-l border-dashed border-outline-variant/30"></div>
+        <span class="absolute top-1 right-1 text-[10px] text-secondary/60 uppercase tracking-wide">Dominante</span>
+        <span class="absolute bottom-1 left-1 text-[10px] text-error/60 uppercase tracking-wide">En apuros</span>
+        @for (p of scatter(); track p.code) {
+          <div class="absolute w-2.5 h-2.5 rounded-full -translate-x-1/2 -translate-y-1/2 group cursor-pointer hover:scale-150 transition-transform"
+            [class.bg-secondary]="p.tone === 'secondary'" [class.bg-tertiary]="p.tone === 'tertiary'"
+            [class.bg-outline]="p.tone === 'outline'" [class.bg-error]="p.tone === 'error'"
+            [style.left.%]="p.left" [style.top.%]="p.top">
+            <div class="hidden group-hover:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max bg-surface-container-highest px-2 py-1 rounded text-[10px] font-data-mono text-on-surface border border-outline-variant z-20">{{ p.code }} ({{ p.attack | number: '1.1-1' }}, {{ p.defense | number: '1.1-1' }})</div>
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+</div>

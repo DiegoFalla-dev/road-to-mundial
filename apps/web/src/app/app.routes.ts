@@ -18,6 +18,24 @@ export const routes: Routes = [
     title: 'Comparador · Road to Mundial 2026',
   },
   {
+    path: 'partidos',
+    loadComponent: () =>
+      import('./features/matches-list/matches-list.component').then((m) => m.MatchesListComponent),
+    title: 'Match Center · Road to Mundial 2026',
+  },
+  {
+    path: 'equipos',
+    loadComponent: () =>
+      import('./features/teams-list/teams-list.component').then((m) => m.TeamsListComponent),
+    title: 'Selecciones · Road to Mundial 2026',
+  },
+  {
+    path: 'stats',
+    loadComponent: () =>
+      import('./features/stats/stats.component').then((m) => m.StatsComponent),
+    title: 'Estadísticas · Road to Mundial 2026',
+  },
+  {
     path: 'partido/:id',
     loadComponent: () =>
       import('./features/match/match.component').then((m) => m.MatchComponent),
