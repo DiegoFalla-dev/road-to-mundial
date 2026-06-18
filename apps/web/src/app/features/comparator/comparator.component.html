@@ -1,108 +1,208 @@
-<h1 class="title">Comparador de selecciones</h1>
+<!-- Page Header -->
+<header class="mb-stack-lg flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
+  <div>
+    <h1 class="text-[32px] leading-[40px] font-bold tracking-tight text-on-surface">Comparador de Selecciones</h1>
+    <p class="text-[16px] text-on-surface-variant mt-1">Análisis estadístico avanzado y enfrentamiento directo</p>
+  </div>
+  <div class="flex gap-2">
+    <button class="px-4 py-2 border border-outline-variant rounded-lg text-on-surface text-[12px] font-semibold tracking-wide hover:bg-surface-container-highest transition-colors flex items-center gap-2">
+      <span class="material-symbols-outlined text-[18px]">tune</span> Filtrar
+    </button>
+    <button class="px-4 py-2 bg-tertiary-container text-on-tertiary-container rounded-lg text-[12px] font-semibold tracking-wide hover:opacity-90 transition-opacity flex items-center gap-2">
+      <span class="material-symbols-outlined text-[18px]">share</span> Compartir
+    </button>
+  </div>
+</header>
 
-<div class="selectors rtm-card">
-  <select [ngModel]="homeId()" (ngModelChange)="homeId.set($event); compare()" aria-label="Equipo local">
-    @for (t of teams(); track t.id) {
-      <option [value]="t.id">{{ t.name }}</option>
-    }
-  </select>
-  <span class="vs-pill">VS</span>
-  <select [ngModel]="awayId()" (ngModelChange)="awayId.set($event); compare()" aria-label="Equipo visitante">
-    @for (t of teams(); track t.id) {
-      <option [value]="t.id">{{ t.name }}</option>
-    }
-  </select>
-</div>
+<!-- Bento grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+  <!-- Selectores + resumen superior -->
+  <section class="col-span-1 lg:col-span-12 bg-surface-container border border-outline-variant rounded-xl p-card-padding flex flex-col md:flex-row items-center justify-between relative overflow-hidden">
+    <div class="absolute -left-20 -top-20 w-64 h-64 bg-tertiary/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -right-20 -top-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
 
-@if (loading() && !result()) {
-  <div class="rtm-card pad"><div class="rtm-skeleton" style="height: 240px"></div></div>
-} @else {
-  @if (result(); as r) {
-    <div class="rtm-fade-in">
-    <section class="rtm-card pad">
-      <div class="score-head">
-        <div class="side">
-          <b class="composite home">{{ r.homeRating.composite | number: "1.0-0" }}</b>
-          <span>{{ r.home.name }}</span>
-        </div>
-        <span class="rtm-badge">Puntaje del modelo</span>
-        <div class="side right">
-          <b class="composite away">{{ r.awayRating.composite | number: "1.0-0" }}</b>
-          <span>{{ r.away.name }}</span>
-        </div>
+    <!-- Equipo A -->
+    <div class="flex flex-col items-center gap-4 w-full md:w-1/3 z-10">
+      <div class="w-24 h-24 rounded-full bg-surface-container-highest border-2 border-tertiary flex items-center justify-center relative shadow-[0_0_15px_rgba(123,208,255,0.15)]">
+        <span class="font-data-mono text-tertiary text-2xl">{{ result()?.home?.code || '—' }}</span>
+        @if (result(); as r) {
+          <div class="absolute -bottom-2 bg-tertiary text-on-tertiary font-data-mono text-[10px] px-2 py-0.5 rounded-full border border-surface">Rating {{ r.homeRating.composite | number: '1.0-0' }}</div>
+        }
       </div>
-
-      <rtm-probability-bar [p]="r.prediction.probabilities" [homeLabel]="r.home.name" [awayLabel]="r.away.name" />
-
-      <div class="conf rtm-muted">
-        Confianza del pronóstico: <b [class]="'conf-' + r.prediction.confidence.toLowerCase()">{{ r.prediction.confidence }}</b>
-        · Goles esperados {{ r.prediction.expectedGoals.home }} – {{ r.prediction.expectedGoals.away }}
-      </div>
-    </section>
-
-    <div class="two">
-      <section class="rtm-card pad">
-        <h2>Perfil comparado</h2>
-        <rtm-radar [labels]="radarLabels" [series]="radarSeries()" />
-        <div class="legend">
-          <span><i class="dot home"></i>{{ r.home.name }}</span>
-          <span><i class="dot away"></i>{{ r.away.name }}</span>
-        </div>
-      </section>
-
-      <section class="rtm-card pad">
-        <h2>Estadísticas clave</h2>
-        <rtm-stat-bar label="Goles anotados / partido" [home]="r.home.offensive.avgGoalsScored" [away]="r.away.offensive.avgGoalsScored" />
-        <rtm-stat-bar label="Goles recibidos / partido" [home]="r.home.defensive.avgGoalsConceded" [away]="r.away.defensive.avgGoalsConceded" [lowerIsBetter]="true" />
-        <rtm-stat-bar label="Tiros a puerta / partido" [home]="r.home.offensive.avgShotsOnTarget" [away]="r.away.offensive.avgShotsOnTarget" />
-        <rtm-stat-bar label="Porterías a cero (10)" [home]="r.home.defensive.cleanSheets" [away]="r.away.defensive.cleanSheets" [decimals]="0" />
-        <rtm-stat-bar label="Victorias (últimos 10)" [home]="r.home.form[10].wins" [away]="r.away.form[10].wins" [decimals]="0" />
-      </section>
+      <select [ngModel]="homeId()" (ngModelChange)="homeId.set($event); compare()" aria-label="Equipo local"
+        class="bg-surface-container-high border border-outline-variant text-on-surface text-[18px] font-semibold rounded-lg py-2 px-4 focus:ring-1 focus:ring-tertiary focus:border-tertiary outline-none text-center appearance-none cursor-pointer hover:bg-surface-container-highest transition-colors w-48 truncate">
+        @for (t of teams(); track t.id) {
+          <option [value]="t.id">{{ t.name }}</option>
+        }
+      </select>
     </div>
 
-    <section class="rtm-card pad">
-      <h2>Mercados de goles</h2>
-      <div class="mk-grid">
-        <div class="mk"><span class="rtm-muted">Ambos anotan</span><b>{{ r.prediction.markets.bothTeamsScore }}%</b></div>
-        <div class="mk"><span class="rtm-muted">Over 2.5 goles</span><b>{{ r.prediction.markets.over25 }}%</b></div>
-        <div class="mk"><span class="rtm-muted">Under 2.5 goles</span><b>{{ 100 - r.prediction.markets.over25 }}%</b></div>
-        <div class="mk"><span class="rtm-muted">Marcador más probable</span><b>{{ r.prediction.markets.mostLikely.home }}–{{ r.prediction.markets.mostLikely.away }}</b></div>
-        <div class="mk"><span class="rtm-muted">Portería a cero {{ r.home.code }}</span><b>{{ r.prediction.markets.homeCleanSheet }}%</b></div>
-        <div class="mk"><span class="rtm-muted">Portería a cero {{ r.away.code }}</span><b>{{ r.prediction.markets.awayCleanSheet }}%</b></div>
-        <div class="mk"><span class="rtm-muted">Puntos esperados {{ r.home.code }}</span><b>{{ r.prediction.markets.expectedPoints.home }}</b></div>
-        <div class="mk"><span class="rtm-muted">Puntos esperados {{ r.away.code }}</span><b>{{ r.prediction.markets.expectedPoints.away }}</b></div>
+    <!-- VS Center -->
+    <div class="flex flex-col items-center justify-center py-stack-md md:py-0 w-full md:w-1/3 z-10">
+      <div class="text-on-surface-variant text-[12px] font-semibold uppercase tracking-widest mb-2">Probabilidad 1X2</div>
+      <div class="text-[48px] leading-[56px] font-bold text-surface-tint drop-shadow-[0_0_10px_rgba(190,198,224,0.1)]">VS</div>
+      @if (result(); as r) {
+        <div class="flex gap-5 mt-4 text-center">
+          <div>
+            <div class="font-data-mono text-tertiary text-lg">{{ r.prediction.probabilities.homeWin }}%</div>
+            <div class="text-[10px] text-on-surface-variant font-semibold">Local</div>
+          </div>
+          <div>
+            <div class="font-data-mono text-surface-tint text-lg">{{ r.prediction.probabilities.draw }}%</div>
+            <div class="text-[10px] text-on-surface-variant font-semibold">Empate</div>
+          </div>
+          <div>
+            <div class="font-data-mono text-secondary text-lg">{{ r.prediction.probabilities.awayWin }}%</div>
+            <div class="text-[10px] text-on-surface-variant font-semibold">Visitante</div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Equipo B -->
+    <div class="flex flex-col items-center gap-4 w-full md:w-1/3 z-10">
+      <div class="w-24 h-24 rounded-full bg-surface-container-highest border-2 border-secondary flex items-center justify-center relative shadow-[0_0_15px_rgba(74,225,118,0.15)]">
+        <span class="font-data-mono text-secondary text-2xl">{{ result()?.away?.code || '—' }}</span>
+        @if (result(); as r) {
+          <div class="absolute -bottom-2 bg-secondary text-on-secondary font-data-mono text-[10px] px-2 py-0.5 rounded-full border border-surface">Rating {{ r.awayRating.composite | number: '1.0-0' }}</div>
+        }
       </div>
-      <div class="scorelines rtm-muted">
-        Marcadores más probables:
-        @for (s of r.prediction.markets.topScorelines; track $index) {
-          <span class="sl">{{ s.home }}–{{ s.away }} <b>{{ s.probability }}%</b></span>
+      <select [ngModel]="awayId()" (ngModelChange)="awayId.set($event); compare()" aria-label="Equipo visitante"
+        class="bg-surface-container-high border border-outline-variant text-on-surface text-[18px] font-semibold rounded-lg py-2 px-4 focus:ring-1 focus:ring-secondary focus:border-secondary outline-none text-center appearance-none cursor-pointer hover:bg-surface-container-highest transition-colors w-48 truncate">
+        @for (t of teams(); track t.id) {
+          <option [value]="t.id">{{ t.name }}</option>
+        }
+      </select>
+    </div>
+  </section>
+
+  <!-- Radar -->
+  <section class="col-span-1 lg:col-span-7 bg-surface-container border border-outline-variant rounded-xl p-card-padding flex flex-col">
+    <div class="flex justify-between items-center mb-stack-md">
+      <h3 class="text-[20px] font-semibold text-on-surface flex items-center gap-2">
+        <span class="material-symbols-outlined text-surface-tint">radar</span>
+        Perfil de Rendimiento
+      </h3>
+      <div class="flex gap-4">
+        <div class="flex items-center gap-2 text-on-surface-variant text-xs font-semibold">
+          <span class="w-3 h-3 rounded-full bg-tertiary"></span> {{ result()?.home?.name || 'Local' }}
+        </div>
+        <div class="flex items-center gap-2 text-on-surface-variant text-xs font-semibold">
+          <span class="w-3 h-3 rounded-full bg-secondary"></span> {{ result()?.away?.name || 'Visitante' }}
+        </div>
+      </div>
+    </div>
+    <div class="flex-grow flex items-center justify-center relative min-h-[350px]">
+      @if (result()) {
+        <rtm-radar [labels]="radarLabels" [series]="radarSeries()" />
+      } @else {
+        <div class="w-[350px] h-[350px] rounded-full bg-surface-container-highest/40 animate-pulse"></div>
+      }
+    </div>
+  </section>
+
+  <!-- Métricas + evolución -->
+  <div class="col-span-1 lg:col-span-5 flex flex-col gap-gutter">
+    <section class="bg-surface-container border border-outline-variant rounded-xl p-card-padding flex-grow">
+      <h3 class="text-[20px] font-semibold text-on-surface mb-stack-md flex items-center gap-2">
+        <span class="material-symbols-outlined text-surface-tint">bar_chart</span>
+        Métricas Clave
+      </h3>
+      <div class="flex flex-col gap-6">
+        @for (m of metrics(); track m.label) {
+          <div>
+            <div class="flex justify-between text-[12px] font-semibold text-on-surface-variant mb-2">
+              <span class="font-data-mono text-tertiary">{{ m.a }}</span>
+              <span>{{ m.label }}</span>
+              <span class="font-data-mono text-secondary">{{ m.b }}</span>
+            </div>
+            <div class="flex items-center w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+              <div class="h-full bg-tertiary rounded-l-full" [style.width.%]="m.aPct"></div>
+              <div class="h-full w-0.5 bg-background"></div>
+              <div class="h-full bg-secondary rounded-r-full" [style.width.%]="100 - m.aPct"></div>
+            </div>
+          </div>
+        } @empty {
+          @for (s of [1,2,3,4]; track s) {
+            <div class="h-8 rounded bg-surface-container-highest/40 animate-pulse"></div>
+          }
         }
       </div>
     </section>
 
-    <section class="rtm-card pad">
-      <h2>Desglose del modelo (0–100)</h2>
-      @for (row of breakdownRows(); track row.label) {
-        <rtm-stat-bar [label]="row.label" [home]="row.home" [away]="row.away" [decimals]="0" />
-      }
-    </section>
-
-    <section class="rtm-card pad factors">
-      <div>
-        <h3>Factores a favor</h3>
-        <ul>
-          @for (f of r.prediction.factorsFor; track f) { <li>{{ f }}</li> }
-        </ul>
+    <section class="bg-surface-container border border-outline-variant rounded-xl p-card-padding">
+      <div class="flex justify-between items-center mb-stack-sm">
+        <h3 class="text-[20px] font-semibold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-surface-tint">timeline</span>
+          Evolución Ranking FIFA
+        </h3>
+        <span class="text-xs font-semibold text-on-surface-variant">Últimos 12 meses</span>
       </div>
-      <div>
-        <h3>Riesgos del pronóstico</h3>
-        <ul>
-          @for (rk of r.prediction.risks; track rk) { <li>{{ rk }}</li> }
-        </ul>
+      <div class="relative h-32 w-full mt-4">
+        <svg class="w-full h-full" viewBox="0 0 300 100" preserveAspectRatio="none">
+          <g stroke="#273647" stroke-dasharray="2,2" stroke-width="1">
+            <line x1="0" x2="300" y1="25" y2="25"></line>
+            <line x1="0" x2="300" y1="50" y2="50"></line>
+            <line x1="0" x2="300" y1="75" y2="75"></line>
+          </g>
+          <path d="M0,80 L50,75 L100,60 L150,55 L200,40 L250,35 L300,20" fill="none" stroke="#7bd0ff" stroke-width="2"></path>
+          <path d="M0,60 L50,65 L100,50 L150,45 L200,50 L250,30 L300,10" fill="none" stroke="#4ae176" stroke-width="2"></path>
+        </svg>
       </div>
+      <p class="text-[10px] text-on-surface-variant mt-2">Serie ilustrativa de tendencia; el ranking puntual procede del modelo.</p>
     </section>
+  </div>
 
-    <p class="disclaimer rtm-muted">⚠️ {{ r.prediction.disclaimer }}</p>
+  <!-- Comparativa de estrellas -->
+  <section class="col-span-1 lg:col-span-12 bg-surface-container border border-outline-variant rounded-xl p-card-padding">
+    <h3 class="text-[20px] font-semibold text-on-surface mb-stack-md flex items-center gap-2 border-b border-outline-variant pb-3">
+      <span class="material-symbols-outlined text-surface-tint">stars</span>
+      Comparativa de Estrellas
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 relative">
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-outline-variant -translate-x-1/2"></div>
+
+      <!-- Estrellas A -->
+      <div class="flex flex-col gap-4">
+        @for (p of homePlayers(); track p.name) {
+          <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high border border-outline-variant hover:border-tertiary transition-colors group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center font-data-mono text-[10px] text-tertiary">{{ result()?.home?.code }}</div>
+              <div>
+                <div class="text-[12px] font-semibold text-on-surface group-hover:text-tertiary transition-colors">{{ p.name }}</div>
+                <div class="text-xs text-on-surface-variant">{{ p.position }}</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="font-data-mono text-tertiary">{{ p.rating | number: '1.1-1' }}</div>
+              <div class="text-[10px] text-on-surface-variant font-semibold">Rating</div>
+            </div>
+          </div>
+        } @empty {
+          <p class="text-[12px] text-on-surface-variant italic">Datos de plantilla no disponibles para esta selección.</p>
+        }
+      </div>
+
+      <!-- Estrellas B -->
+      <div class="flex flex-col gap-4">
+        @for (p of awayPlayers(); track p.name) {
+          <div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high border border-outline-variant hover:border-secondary transition-colors group">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center font-data-mono text-[10px] text-secondary">{{ result()?.away?.code }}</div>
+              <div>
+                <div class="text-[12px] font-semibold text-on-surface group-hover:text-secondary transition-colors">{{ p.name }}</div>
+                <div class="text-xs text-on-surface-variant">{{ p.position }}</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="font-data-mono text-secondary">{{ p.rating | number: '1.1-1' }}</div>
+              <div class="text-[10px] text-on-surface-variant font-semibold">Rating</div>
+            </div>
+          </div>
+        } @empty {
+          <p class="text-[12px] text-on-surface-variant italic">Datos de plantilla no disponibles para esta selección.</p>
+        }
+      </div>
     </div>
-  }
-}
+  </section>
+</div>

@@ -2,18 +2,22 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../core/api.service';
-import { BREAKDOWN_LABELS } from '../../core/models';
-import type { ComparisonResult, ScoreBreakdown, TeamProfile } from '../../core/models';
-import { ProbabilityBarComponent } from '../../shared/probability-bar.component';
-import { StatBarComponent } from '../../shared/stat-bar.component';
+import type { ComparisonResult, TeamProfile } from '../../core/models';
 import { RadarComponent, type RadarSeries } from '../../shared/radar.component';
+import { KEY_PLAYERS, type KeyPlayer } from '../../core/key-players';
+
+interface MetricBar {
+  label: string;
+  a: string;
+  b: string;
+  aPct: number;
+}
 
 @Component({
   selector: 'rtm-comparator',
   standalone: true,
-  imports: [DecimalPipe, FormsModule, ProbabilityBarComponent, StatBarComponent, RadarComponent],
+  imports: [FormsModule, DecimalPipe, RadarComponent],
   templateUrl: './comparator.component.html',
-  styleUrl: './comparator.component.scss',
 })
 export class ComparatorComponent implements OnInit {
   private readonly api = inject(ApiService);
@@ -22,40 +26,65 @@ export class ComparatorComponent implements OnInit {
   readonly homeId = signal<string>('');
   readonly awayId = signal<string>('');
   readonly result = signal<ComparisonResult | null>(null);
-  readonly loading = signal(false);
 
-  readonly radarLabels = (Object.keys(BREAKDOWN_LABELS) as (keyof ScoreBreakdown)[]).map(
-    (k) => BREAKDOWN_LABELS[k],
-  );
+  readonly radarLabels = ['Ataque', 'Posesión', 'Físico', 'Táctica', 'Defensa'];
 
   readonly radarSeries = computed<RadarSeries[]>(() => {
     const r = this.result();
     if (!r) return [];
-    const keys = Object.keys(BREAKDOWN_LABELS) as (keyof ScoreBreakdown)[];
+    const pick = (b: any) => [b.offensive, b.opponentQuality, b.squad, b.tactical, b.defensive];
     return [
-      { name: r.home.name, color: '#16a34a', values: keys.map((k) => r.homeRating.breakdown[k]) },
-      { name: r.away.name, color: '#6366f1', values: keys.map((k) => r.awayRating.breakdown[k]) },
+      { name: r.home.name, color: '#7bd0ff', values: pick(r.homeRating.breakdown) },
+      { name: r.away.name, color: '#4ae176', values: pick(r.awayRating.breakdown) },
     ];
   });
 
-  /** Filas de desglose numérico del modelo (8 dimensiones) lado a lado. */
-  readonly breakdownRows = computed(() => {
+  /** Métricas clave en barras divididas (izq = local cian, der = visitante verde). */
+  readonly metrics = computed<MetricBar[]>(() => {
     const r = this.result();
     if (!r) return [];
-    const keys = Object.keys(BREAKDOWN_LABELS) as (keyof ScoreBreakdown)[];
-    return keys.map((k) => ({
-      label: BREAKDOWN_LABELS[k],
-      home: Math.round(r.homeRating.breakdown[k]),
-      away: Math.round(r.awayRating.breakdown[k]),
-    }));
+    const p = r.prediction;
+    const split = (a: number, b: number): number => {
+      const t = a + b;
+      return t <= 0 ? 50 : Math.round((a / t) * 100);
+    };
+    return [
+      {
+        label: 'Goles Esperados (xG)',
+        a: p.expectedGoals.home.toFixed(1),
+        b: p.expectedGoals.away.toFixed(1),
+        aPct: split(p.expectedGoals.home, p.expectedGoals.away),
+      },
+      {
+        label: 'Tiros a puerta / partido',
+        a: r.home.offensive.avgShotsOnTarget.toFixed(1),
+        b: r.away.offensive.avgShotsOnTarget.toFixed(1),
+        aPct: split(r.home.offensive.avgShotsOnTarget, r.away.offensive.avgShotsOnTarget),
+      },
+      {
+        label: 'Prob. Portería a Cero',
+        a: `${p.markets.homeCleanSheet}%`,
+        b: `${p.markets.awayCleanSheet}%`,
+        aPct: split(p.markets.homeCleanSheet, p.markets.awayCleanSheet),
+      },
+      {
+        label: 'Puntos Esperados (xPts)',
+        a: p.markets.expectedPoints.home.toFixed(2),
+        b: p.markets.expectedPoints.away.toFixed(2),
+        aPct: split(p.markets.expectedPoints.home, p.markets.expectedPoints.away),
+      },
+    ];
   });
+
+  readonly homePlayers = computed<KeyPlayer[]>(() => KEY_PLAYERS[this.homeId()] ?? []);
+  readonly awayPlayers = computed<KeyPlayer[]>(() => KEY_PLAYERS[this.awayId()] ?? []);
 
   ngOnInit(): void {
     this.api.listTeams().subscribe((t) => {
       this.teams.set(t);
       if (t.length >= 2) {
         this.homeId.set(t.find((x) => x.id === 'arg')?.id ?? t[0]!.id);
-        this.awayId.set(t.find((x) => x.id === 'bra')?.id ?? t[1]!.id);
+        this.awayId.set(t.find((x) => x.id === 'fra')?.id ?? t[1]!.id);
         this.compare();
       }
     });
@@ -65,13 +94,6 @@ export class ComparatorComponent implements OnInit {
     const h = this.homeId();
     const a = this.awayId();
     if (!h || !a || h === a) return;
-    this.loading.set(true);
-    this.api.compare(h, a).subscribe({
-      next: (r) => {
-        this.result.set(r);
-        this.loading.set(false);
-      },
-      error: () => this.loading.set(false),
-    });
+    this.api.compare(h, a).subscribe((r) => this.result.set(r));
   }
 }

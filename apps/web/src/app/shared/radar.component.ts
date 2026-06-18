@@ -38,16 +38,16 @@ export interface RadarSeries {
       }
       .grid-ring {
         fill: none;
-        stroke: var(--rtm-border);
+        stroke: #273647;
         stroke-width: 1;
       }
       .axis {
-        stroke: var(--rtm-border);
+        stroke: #273647;
         stroke-width: 1;
       }
       .axis-label {
-        fill: var(--rtm-text-muted);
-        font-size: 9px;
+        fill: #c6c6cd;
+        font-size: 10px;
         font-weight: 600;
       }
     `,
