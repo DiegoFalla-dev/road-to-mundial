@@ -76,8 +76,8 @@ export class ComparatorComponent implements OnInit {
     ];
   });
 
-  readonly homePlayers = computed<KeyPlayer[]>(() => KEY_PLAYERS[this.homeId()] ?? []);
-  readonly awayPlayers = computed<KeyPlayer[]>(() => KEY_PLAYERS[this.awayId()] ?? []);
+  readonly homePlayers = computed<readonly KeyPlayer[]>(() => KEY_PLAYERS[this.homeId()] ?? []);
+  readonly awayPlayers = computed<readonly KeyPlayer[]>(() => KEY_PLAYERS[this.awayId()] ?? []);
 
   ngOnInit(): void {
     this.api.listTeams().subscribe((t) => {
