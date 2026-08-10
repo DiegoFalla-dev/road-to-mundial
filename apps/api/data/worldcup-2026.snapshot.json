@@ -2,7 +2,7 @@
   "provenance": {
     "source": "openfootball/worldcup.json (dominio público) — FIFA World Cup 2026",
     "url": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-    "retrievedAt": "2026-08-10T18:39:13.815Z",
+    "retrievedAt": "2026-08-10T21:30:01.850Z",
     "note": "Calendario real + marcadores de openfootball (con bootstrap de resultados J1)."
   },
   "groups": {
